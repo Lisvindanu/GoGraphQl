@@ -106,7 +106,7 @@ func (s *CuacaService) geocode(ctx context.Context, query string) (*geoResult, e
 	}
 
 	geoURL := "https://geocoding-api.open-meteo.com/v1/search?name=" +
-		url.QueryEscape(query+" Indonesia") + "&count=1&language=id&format=json"
+		url.QueryEscape(query) + "&countryCode=ID&count=1&language=id&format=json"
 
 	req, err := http.NewRequestWithContext(ctx, "GET", geoURL, nil)
 	if err != nil {
