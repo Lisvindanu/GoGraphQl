@@ -1,0 +1,6 @@
+type Query {
+  """
+  Health check — returns "ok" jika server berjalan normal
+  """
+  health: String!
+}

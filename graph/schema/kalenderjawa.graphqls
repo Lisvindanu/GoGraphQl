@@ -1,0 +1,14 @@
+type KalenderJawaResult {
+  tanggalMasehi: String!
+  hari: String!
+  pasaran: String!
+  wuku: String!
+  tahunJawa: Int!
+  namaWindu: String!
+  tahunDalamWindu: String!
+}
+
+extend type Query {
+  """Konversi tanggal Masehi ke Kalender Jawa (format: YYYY-MM-DD)"""
+  kalenderJawa(tanggal: String!): KalenderJawaResult!
+}

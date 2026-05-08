@@ -1,0 +1,45 @@
+type Provinsi {
+  kode: String!
+  nama: String!
+  kota: [Kota!]!
+}
+
+type Kota {
+  kode: String!
+  nama: String!
+  kecamatan: [Kecamatan!]!
+}
+
+type Kecamatan {
+  kode: String!
+  nama: String!
+  kelurahan: [Kelurahan!]!
+}
+
+type Kelurahan {
+  kode: String!
+  nama: String!
+  kodePos: String
+}
+
+type WilayahSearchResult {
+  kode: String!
+  nama: String!
+  tipe: String!
+  kota: String
+  provinsi: String
+}
+
+extend type Query {
+  """Daftar semua provinsi di Indonesia"""
+  provinsiList: [Provinsi!]!
+
+  """Detail satu provinsi berdasarkan kode (2 digit)"""
+  provinsi(kode: String!): Provinsi
+
+  """Detail satu kota/kabupaten berdasarkan kode (4 digit)"""
+  kota(kode: String!): Kota
+
+  """Cari wilayah (provinsi/kota/kecamatan) berdasarkan nama"""
+  searchWilayah(query: String!, limit: Int): [WilayahSearchResult!]!
+}

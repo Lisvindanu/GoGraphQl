@@ -1,0 +1,15 @@
+type NIKResult {
+  valid: Boolean!
+  nik: String!
+  provinsi: String
+  kota: String
+  kecamatan: String
+  tanggalLahir: String
+  jenisKelamin: String
+  errors: [String!]
+}
+
+extend type Query {
+  """Validasi dan parsing format NIK (16 digit)"""
+  validasiNIK(nik: String!): NIKResult!
+}

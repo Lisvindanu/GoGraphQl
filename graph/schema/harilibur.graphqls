@@ -1,0 +1,13 @@
+type HariLibur {
+  tanggal: String!
+  nama: String!
+  jenis: String!
+}
+
+extend type Query {
+  """Daftar hari libur nasional berdasarkan tahun, opsional filter bulan"""
+  hariLibur(tahun: Int!, bulan: Int): [HariLibur!]!
+
+  """Cek apakah hari ini hari libur"""
+  hariLiburHariIni: HariLibur
+}

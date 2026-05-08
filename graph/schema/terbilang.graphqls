@@ -1,0 +1,9 @@
+type TerbilangResult {
+  angka: Float!
+  terbilang: String!
+}
+
+extend type Query {
+  """Konversi angka ke teks bahasa Indonesia"""
+  terbilang(angka: Float!): TerbilangResult!
+}

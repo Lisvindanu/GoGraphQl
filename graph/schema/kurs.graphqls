@@ -1,0 +1,12 @@
+type KursResult {
+  mataUang: String!
+  kursBeli: Float!
+  kursJual: Float!
+  kursTengah: Float!
+  tanggal: String!
+}
+
+extend type Query {
+  """Kurs mata uang asing dari Bank Indonesia. Kosongkan mataUang untuk semua."""
+  kurs(mataUang: String): [KursResult!]!
+}

@@ -1,0 +1,19 @@
+type Prakiraan {
+  waktu: String!
+  suhu: String!
+  kelembapan: String!
+  cuaca: String!
+  kecepatanAngin: String!
+  arahAngin: String!
+}
+
+type CuacaResult {
+  provinsi: String!
+  kota: String!
+  prakiraan: [Prakiraan!]!
+}
+
+extend type Query {
+  """Prakiraan cuaca dari BMKG berdasarkan kode provinsi dan nama kota"""
+  cuaca(provinsiKode: String!, kota: String!): CuacaResult!
+}
