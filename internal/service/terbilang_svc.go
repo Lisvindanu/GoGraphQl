@@ -74,9 +74,9 @@ func terbilangInt(n int64) string {
 		}
 		rem := n % 10
 		if rem == 0 {
-			return prefix + "puluh"
+			return prefix + " puluh"
 		}
-		return prefix + "puluh " + satuan[rem]
+		return prefix + " puluh " + satuan[rem]
 	}
 	if n < 200 {
 		rem := n % 100
