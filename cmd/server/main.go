@@ -49,8 +49,11 @@ func main() {
 	cuacaSvc := service.NewCuacaService(c)
 	kursSvc := service.NewKursService(c)
 	nikSvc := service.NewNIKService(wilayahRepo)
+	kodeBankSvc := service.NewKodeBankService()
+	platNomorSvc := service.NewPlatNomorService()
+	waktuSholatSvc := service.NewWaktuSholatService(c, cuacaSvc)
 
-	resolver := graph.NewResolver(wilayahSvc, hariLiburSvc, cuacaSvc, kursSvc, nikSvc)
+	resolver := graph.NewResolver(wilayahSvc, hariLiburSvc, cuacaSvc, kursSvc, nikSvc, kodeBankSvc, platNomorSvc, waktuSholatSvc)
 
 	srv := handler.New(graph.NewExecutableSchema(graph.Config{
 		Resolvers: resolver,
