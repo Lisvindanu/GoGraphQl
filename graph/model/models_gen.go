@@ -18,6 +18,11 @@ type KalenderJawaResult struct {
 	TahunDalamWindu string `json:"tahunDalamWindu"`
 }
 
+type KodeBankResult struct {
+	Kode string `json:"kode"`
+	Nama string `json:"nama"`
+}
+
 type KursResult struct {
 	MataUang   string  `json:"mataUang"`
 	KursBeli   float64 `json:"kursBeli"`
@@ -37,6 +42,12 @@ type NIKResult struct {
 	Errors       []string `json:"errors,omitempty"`
 }
 
+type PlatNomorResult struct {
+	Kode     string `json:"kode"`
+	Wilayah  string `json:"wilayah"`
+	Provinsi string `json:"provinsi"`
+}
+
 type Prakiraan struct {
 	Waktu          string `json:"waktu"`
 	Suhu           string `json:"suhu"`
@@ -52,4 +63,15 @@ type Query struct {
 type TerbilangResult struct {
 	Angka     float64 `json:"angka"`
 	Terbilang string  `json:"terbilang"`
+}
+
+type WaktuSholatResult struct {
+	Kota    string `json:"kota"`
+	Tanggal string `json:"tanggal"`
+	Subuh   string `json:"subuh"`
+	Terbit  string `json:"terbit"`
+	Dzuhur  string `json:"dzuhur"`
+	Ashar   string `json:"ashar"`
+	Maghrib string `json:"maghrib"`
+	Isya    string `json:"isya"`
 }

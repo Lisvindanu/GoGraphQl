@@ -1,0 +1,15 @@
+type WaktuSholatResult {
+  kota: String!
+  tanggal: String!
+  subuh: String!
+  terbit: String!
+  dzuhur: String!
+  ashar: String!
+  maghrib: String!
+  isya: String!
+}
+
+extend type Query {
+  """Jadwal waktu sholat hari ini berdasarkan nama kota"""
+  waktuSholat(kota: String!): WaktuSholatResult
+}

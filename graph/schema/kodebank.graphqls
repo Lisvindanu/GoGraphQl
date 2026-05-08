@@ -1,0 +1,11 @@
+type KodeBankResult {
+  kode: String!
+  nama: String!
+}
+
+extend type Query {
+  """Cari informasi bank berdasarkan kode transfer (3 digit)"""
+  kodeBank(kode: String!): KodeBankResult
+  """Daftar semua kode bank Indonesia"""
+  kodeBankList: [KodeBankResult!]!
+}

@@ -1,0 +1,10 @@
+type PlatNomorResult {
+  kode: String!
+  wilayah: String!
+  provinsi: String!
+}
+
+extend type Query {
+  """Cari wilayah berdasarkan kode plat nomor kendaraan"""
+  platNomor(kode: String!): PlatNomorResult
+}
