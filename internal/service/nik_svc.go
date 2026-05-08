@@ -7,6 +7,7 @@ import (
 	"strings"
 	"unicode"
 
+	nikdata "github.com/lisvindanuu/indonesiaql/internal/nik"
 	"github.com/lisvindanuu/indonesiaql/internal/repository"
 )
 
@@ -45,16 +46,23 @@ func (s *NIKService) Validasi(ctx context.Context, nik string) (*NIKResult, erro
 	}
 
 	kodeProvinsi := nik[0:2]
-	kodeKota := nik[0:4]
+	kodeKab := nik[0:4]
+	kodeKec := nik[0:6]
 
+	// Provinsi from DB (BPS and Kemendagri use same 2-digit codes for provinces)
 	provinsi, err := s.wilayahRepo.GetProvinsiByKode(ctx, kodeProvinsi)
 	if err == nil && provinsi != nil {
 		result.Provinsi = &provinsi.Nama
 	}
 
-	kota, err := s.wilayahRepo.GetKotaByKode(ctx, kodeKota)
-	if err == nil && kota != nil {
-		result.Kota = &kota.Nama
+	// Kabupaten from static Kemendagri map (matches NIK standard)
+	if nama, ok := nikdata.NIKKabupaten[kodeKab]; ok {
+		result.Kota = &nama
+	}
+
+	// Kecamatan from static Kemendagri map
+	if nama, ok := nikdata.NIKKecamatan[kodeKec]; ok {
+		result.Kecamatan = &nama
 	}
 
 	ddStr := nik[6:8]
@@ -65,20 +73,20 @@ func (s *NIKService) Validasi(ctx context.Context, nik string) (*NIKResult, erro
 	mm, _ := strconv.Atoi(mmStr)
 	yy, _ := strconv.Atoi(yyStr)
 
-	jenisKelamin := "Laki-laki"
+	jenisKelamin := "LAKI-LAKI"
 	if dd > 40 {
 		dd -= 40
-		jenisKelamin = "Perempuan"
+		jenisKelamin = "PEREMPUAN"
 	}
 	result.JenisKelamin = &jenisKelamin
 
 	tahun := 1900 + yy
-	if yy < 30 {
+	if yy < 22 {
 		tahun = 2000 + yy
 	}
 
 	if dd >= 1 && dd <= 31 && mm >= 1 && mm <= 12 {
-		tgl := fmt.Sprintf("%04d-%02d-%02d", tahun, mm, dd)
+		tgl := fmt.Sprintf("%02d/%02d/%04d", dd, mm, tahun)
 		result.TanggalLahir = &tgl
 	} else {
 		result.Errors = append(result.Errors, "Format tanggal lahir tidak valid")
