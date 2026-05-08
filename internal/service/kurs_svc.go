@@ -2,11 +2,11 @@ package service
 
 import (
 	"context"
-	"encoding/xml"
+	"encoding/json"
 	"fmt"
 	"io"
+	"math"
 	"net/http"
-	"strconv"
 	"strings"
 	"time"
 
@@ -33,74 +33,84 @@ type KursResult struct {
 	Tanggal    string
 }
 
-type biKursResponse struct {
-	XMLName xml.Name `xml:"Envelope"`
-	Body    biBody   `xml:"Body"`
+type erAPIResponse struct {
+	Result         string             `json:"result"`
+	TimeLastUpdate string             `json:"time_last_update_utc"`
+	BaseCode       string             `json:"base_code"`
+	Rates          map[string]float64 `json:"rates"`
 }
 
-type biBody struct {
-	Response biKursListResponse `xml:"getKursResponse"`
-}
+// erAPIURL fetches all rates with USD as base (free tier, no API key required).
+const erAPIURL = "https://open.er-api.com/v6/latest/USD"
 
-type biKursListResponse struct {
-	Return biKursReturn `xml:"return"`
+// defaultCurrencies is the list of currencies shown when no filter is applied.
+var defaultCurrencies = []string{
+	"USD", "EUR", "SGD", "MYR", "JPY", "GBP", "AUD",
+	"SAR", "CNY", "KRW", "HKD", "THB", "CHF", "CAD",
 }
-
-type biKursReturn struct {
-	Tanggal string   `xml:"Tanggal"`
-	Kurs    []biKurs `xml:"kurs"`
-}
-
-type biKurs struct {
-	MataUang string `xml:"mata_uang"`
-	Beli     string `xml:"beli"`
-	Jual     string `xml:"jual"`
-	Tengah   string `xml:"tengah"`
-}
-
-const biKursURL = "https://www.bi.go.id/biwebservice/wskursbi.asmx/getKursLokal"
 
 func (s *KursService) GetKurs(ctx context.Context, mataUang *string) ([]KursResult, error) {
 	cacheKey := "kurs:all"
+	filterCur := ""
 	if mataUang != nil && *mataUang != "" {
-		cacheKey = "kurs:" + strings.ToUpper(*mataUang)
+		filterCur = strings.ToUpper(*mataUang)
+		cacheKey = "kurs:" + filterCur
 	}
 	if cached, ok := s.cache.Get(cacheKey); ok {
 		return cached.([]KursResult), nil
 	}
 
-	req, err := http.NewRequestWithContext(ctx, "GET", biKursURL, nil)
+	req, err := http.NewRequestWithContext(ctx, "GET", erAPIURL, nil)
 	if err != nil {
-		return nil, fmt.Errorf("buat request BI: %w", err)
+		return nil, fmt.Errorf("buat request kurs: %w", err)
 	}
 
 	resp, err := s.client.Do(req)
 	if err != nil {
-		return nil, fmt.Errorf("fetch kurs BI: %w", err)
+		return nil, fmt.Errorf("fetch kurs: %w", err)
 	}
 	defer resp.Body.Close()
 
-	body, err := io.ReadAll(io.LimitReader(resp.Body, 2*1024*1024))
+	body, err := io.ReadAll(io.LimitReader(resp.Body, 1*1024*1024))
 	if err != nil {
-		return nil, fmt.Errorf("baca response BI: %w", err)
+		return nil, fmt.Errorf("baca response kurs: %w", err)
 	}
 
-	var biResp biKursResponse
-	if err := xml.Unmarshal(body, &biResp); err != nil {
-		return nil, fmt.Errorf("parse XML BI: %w", err)
+	var erResp erAPIResponse
+	if err := json.Unmarshal(body, &erResp); err != nil {
+		return nil, fmt.Errorf("parse response kurs: %w", err)
 	}
 
-	tanggal := biResp.Body.Response.Return.Tanggal
+	if erResp.Result != "success" {
+		return nil, fmt.Errorf("kurs API tidak tersedia")
+	}
+
+	idrRate, ok := erResp.Rates["IDR"]
+	if !ok || idrRate == 0 {
+		return nil, fmt.Errorf("rate IDR tidak tersedia")
+	}
+
+	tanggal := parseTanggalKurs(erResp.TimeLastUpdate)
+
+	// Determine which currencies to return
+	currencies := defaultCurrencies
+	if filterCur != "" {
+		currencies = []string{filterCur}
+	}
+
 	var results []KursResult
-	for _, k := range biResp.Body.Response.Return.Kurs {
-		if mataUang != nil && *mataUang != "" && !strings.EqualFold(k.MataUang, *mataUang) {
+	for _, cur := range currencies {
+		curRate, ok := erResp.Rates[cur]
+		if !ok || curRate == 0 {
 			continue
 		}
+		// 1 CUR = (idrRate / curRate) IDR
+		mid := idrRate / curRate
 		results = append(results, KursResult{
-			MataUang:   k.MataUang,
-			KursBeli:   parseKurs(k.Beli),
-			KursJual:   parseKurs(k.Jual),
-			KursTengah: parseKurs(k.Tengah),
+			MataUang:   cur,
+			KursBeli:   math.Round(mid * 0.995),
+			KursJual:   math.Round(mid * 1.005),
+			KursTengah: math.Round(mid),
 			Tanggal:    tanggal,
 		})
 	}
@@ -109,8 +119,12 @@ func (s *KursService) GetKurs(ctx context.Context, mataUang *string) ([]KursResu
 	return results, nil
 }
 
-func parseKurs(s string) float64 {
-	s = strings.ReplaceAll(s, ",", "")
-	v, _ := strconv.ParseFloat(strings.TrimSpace(s), 64)
-	return v
+// parseTanggalKurs parses the RFC1123Z date string from ExchangeRate-API
+// into YYYY-MM-DD format. Falls back to today's date on error.
+func parseTanggalKurs(s string) string {
+	t, err := time.Parse("Mon, 02 Jan 2006 15:04:05 -0700", s)
+	if err != nil {
+		return time.Now().Format("2006-01-02")
+	}
+	return t.Format("2006-01-02")
 }
