@@ -66,6 +66,31 @@ var data = []hari{
 	{"2025-09-05", "Maulid Nabi Muhammad SAW 1447 H", "nasional"},
 	{"2025-12-25", "Hari Raya Natal", "nasional"},
 	{"2025-12-26", "Cuti Bersama Natal", "cuti_bersama"},
+
+	// ====== 2026 ======
+	{"2026-01-01", "Tahun Baru Masehi 2026", "nasional"},
+	{"2026-01-17", "Isra Mikraj Nabi Muhammad SAW 1447 H", "nasional"},
+	{"2026-01-19", "Cuti Bersama Isra Mikraj", "cuti_bersama"},
+	{"2026-02-17", "Tahun Baru Imlek 2577 (Tahun Kuda)", "nasional"},
+	{"2026-03-09", "Hari Suci Nyepi (Tahun Baru Saka 1948)", "nasional"},
+	{"2026-03-20", "Hari Raya Idul Fitri 1447 H", "nasional"},
+	{"2026-03-21", "Hari Raya Idul Fitri 1447 H (Hari Kedua)", "nasional"},
+	{"2026-03-23", "Cuti Bersama Idul Fitri 1447 H", "cuti_bersama"},
+	{"2026-03-24", "Cuti Bersama Idul Fitri 1447 H", "cuti_bersama"},
+	{"2026-03-25", "Cuti Bersama Idul Fitri 1447 H", "cuti_bersama"},
+	{"2026-03-26", "Cuti Bersama Idul Fitri 1447 H", "cuti_bersama"},
+	{"2026-04-03", "Wafat Isa Al Masih", "nasional"},
+	{"2026-05-01", "Hari Buruh Internasional", "nasional"},
+	{"2026-05-14", "Kenaikan Isa Al Masih", "nasional"},
+	{"2026-05-15", "Cuti Bersama Kenaikan Isa Al Masih", "cuti_bersama"},
+	{"2026-05-24", "Hari Raya Waisak 2570 BE", "nasional"},
+	{"2026-05-27", "Hari Raya Idul Adha 1447 H", "nasional"},
+	{"2026-06-01", "Hari Lahir Pancasila", "nasional"},
+	{"2026-06-17", "Tahun Baru Islam 1448 H", "nasional"},
+	{"2026-08-17", "Hari Kemerdekaan Republik Indonesia", "nasional"},
+	{"2026-08-26", "Maulid Nabi Muhammad SAW 1448 H", "nasional"},
+	{"2026-12-25", "Hari Raya Natal", "nasional"},
+	{"2026-12-26", "Cuti Bersama Natal", "cuti_bersama"},
 }
 
 func main() {
