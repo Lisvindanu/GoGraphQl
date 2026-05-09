@@ -70,7 +70,7 @@ func main() {
 	srv.AddTransport(transport.POST{})
 	srv.AddTransport(transport.GET{})
 	srv.Use(extension.Introspection{})
-	srv.Use(extension.FixedComplexityLimit(200))
+	srv.Use(extension.FixedComplexityLimit(500))
 
 	srv.SetErrorPresenter(func(ctx context.Context, err error) *gqlerror.Error {
 		gqlErr := graphql.DefaultErrorPresenter(ctx, err)
