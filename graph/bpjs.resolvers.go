@@ -11,17 +11,17 @@ import (
 	"github.com/lisvindanuu/indonesiaql/graph/model"
 )
 
-// HargaBbm is the resolver for the hargaBBM field.
-func (r *queryResolver) HargaBbm(ctx context.Context) ([]*model.HargaBBMItem, error) {
-	list := r.hargaBBMSvc.GetAll()
-	result := make([]*model.HargaBBMItem, len(list))
+// IuranBpjs is the resolver for the iuranBPJS field.
+func (r *queryResolver) IuranBpjs(ctx context.Context) ([]*model.IuranBpjs, error) {
+	list := r.bpjsSvc.GetIuran()
+	result := make([]*model.IuranBpjs, len(list))
 	for i, item := range list {
 		item := item
-		result[i] = &model.HargaBBMItem{
-			Nama:   item.Nama,
-			Harga:  item.Harga,
-			Satuan: item.Satuan,
-			Jenis:  item.Jenis,
+		result[i] = &model.IuranBpjs{
+			Kelas:      item.Kelas,
+			Segmen:     item.Segmen,
+			Nominal:    item.Nominal,
+			Keterangan: item.Keterangan,
 		}
 	}
 	return result, nil

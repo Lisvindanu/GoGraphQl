@@ -1,0 +1,32 @@
+type IHSGResult {
+  symbol: String!
+  nama: String!
+  harga: Float!
+  perubahan: Float!
+  persentasePerubahan: Float!
+  open: Float!
+  high: Float!
+  low: Float!
+  volume: Int!
+  waktu: String!
+}
+
+type SahamResult {
+  symbol: String!
+  nama: String!
+  harga: Float!
+  perubahan: Float!
+  persentasePerubahan: Float!
+  open: Float!
+  high: Float!
+  low: Float!
+  volume: Int!
+  waktu: String!
+}
+
+extend type Query {
+  """Data IHSG (Indeks Harga Saham Gabungan) real-time dari Bursa Efek Indonesia"""
+  ihsg: IHSGResult!
+  """Data saham perusahaan BEI. Gunakan kode dengan suffix .JK, misal: BBCA.JK, BBRI.JK, TLKM.JK"""
+  saham(kode: String!): SahamResult
+}

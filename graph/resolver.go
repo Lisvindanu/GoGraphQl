@@ -18,6 +18,11 @@ type Resolver struct {
 	kodePosSvc          *service.KodePosService
 	kalenderHijriyahSvc *service.KalenderHijriyahService
 	hargaBBMSvc         *service.HargaBBMService
+	ihsgSvc             *service.IHSGService
+	krlSvc              *service.KRLService
+	bpjsSvc             *service.BPJSService
+	rekeningSvc         *service.RekeningService
+	inflasiSvc          *service.InflasiService
 }
 
 func NewResolver(
@@ -33,6 +38,11 @@ func NewResolver(
 	kodePosSvc *service.KodePosService,
 	kalenderHijriyahSvc *service.KalenderHijriyahService,
 	hargaBBMSvc *service.HargaBBMService,
+	ihsgSvc *service.IHSGService,
+	krlSvc *service.KRLService,
+	bpjsSvc *service.BPJSService,
+	rekeningSvc *service.RekeningService,
+	inflasiSvc *service.InflasiService,
 ) *Resolver {
 	return &Resolver{
 		wilayahSvc:          wilayahSvc,
@@ -47,5 +57,10 @@ func NewResolver(
 		kodePosSvc:          kodePosSvc,
 		kalenderHijriyahSvc: kalenderHijriyahSvc,
 		hargaBBMSvc:         hargaBBMSvc,
+		ihsgSvc:             ihsgSvc,
+		krlSvc:              krlSvc,
+		bpjsSvc:             bpjsSvc,
+		rekeningSvc:         rekeningSvc,
+		inflasiSvc:          inflasiSvc,
 	}
 }

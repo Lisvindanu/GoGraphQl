@@ -27,6 +27,44 @@ type HargaBBMItem struct {
 	Jenis  string `json:"jenis"`
 }
 
+type IHSGResult struct {
+	Symbol              string  `json:"symbol"`
+	Nama                string  `json:"nama"`
+	Harga               float64 `json:"harga"`
+	Perubahan           float64 `json:"perubahan"`
+	PersentasePerubahan float64 `json:"persentasePerubahan"`
+	Open                float64 `json:"open"`
+	High                float64 `json:"high"`
+	Low                 float64 `json:"low"`
+	Volume              int     `json:"volume"`
+	Waktu               string  `json:"waktu"`
+}
+
+type InflasiItem struct {
+	Periode        string  `json:"periode"`
+	Bulan          string  `json:"bulan"`
+	Tahun          int     `json:"tahun"`
+	InflasiBulanan float64 `json:"inflasiBulanan"`
+	InflasiTahunan float64 `json:"inflasiTahunan"`
+	Ihk            float64 `json:"ihk"`
+}
+
+type IuranBpjs struct {
+	Kelas      string `json:"kelas"`
+	Segmen     string `json:"segmen"`
+	Nominal    int    `json:"nominal"`
+	Keterangan string `json:"keterangan"`
+}
+
+type JadwalKrl struct {
+	TrainID     string `json:"trainId"`
+	KaName      string `json:"kaName"`
+	RouteName   string `json:"routeName"`
+	DestTime    string `json:"destTime"`
+	DestStasiun string `json:"destStasiun"`
+	ColorCode   string `json:"colorCode"`
+}
+
 type KalenderHijriyahResult struct {
 	TanggalMasehi   string `json:"tanggalMasehi"`
 	TanggalHijriyah string `json:"tanggalHijriyah"`
@@ -97,9 +135,36 @@ type Prakiraan struct {
 type Query struct {
 }
 
+type SahamResult struct {
+	Symbol              string  `json:"symbol"`
+	Nama                string  `json:"nama"`
+	Harga               float64 `json:"harga"`
+	Perubahan           float64 `json:"perubahan"`
+	PersentasePerubahan float64 `json:"persentasePerubahan"`
+	Open                float64 `json:"open"`
+	High                float64 `json:"high"`
+	Low                 float64 `json:"low"`
+	Volume              int     `json:"volume"`
+	Waktu               string  `json:"waktu"`
+}
+
+type StasiunKrl struct {
+	StasiunID   string `json:"stasiunId"`
+	StasiunNama string `json:"stasiunNama"`
+	StasiunKode string `json:"stasiunKode"`
+}
+
 type TerbilangResult struct {
 	Angka     float64 `json:"angka"`
 	Terbilang string  `json:"terbilang"`
+}
+
+type ValidasiRekeningResult struct {
+	Valid      bool   `json:"valid"`
+	Bank       string `json:"bank"`
+	NoRekening string `json:"noRekening"`
+	Panjang    int    `json:"panjang"`
+	Keterangan string `json:"keterangan"`
 }
 
 type WaktuSholatResult struct {

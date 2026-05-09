@@ -1,0 +1,12 @@
+type ValidasiRekeningResult {
+  valid: Boolean!
+  bank: String!
+  noRekening: String!
+  panjang: Int!
+  keterangan: String!
+}
+
+extend type Query {
+  """Validasi format nomor rekening bank Indonesia berdasarkan kode bank (misal: BCA, MANDIRI, BRI)"""
+  validasiRekening(bank: String!, noRekening: String!): ValidasiRekeningResult!
+}

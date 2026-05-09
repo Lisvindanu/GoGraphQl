@@ -1,0 +1,13 @@
+type InflasiItem {
+  periode: String!
+  bulan: String!
+  tahun: Int!
+  inflasiBulanan: Float!
+  inflasiTahunan: Float!
+  ihk: Float!
+}
+
+extend type Query {
+  """Data inflasi bulanan Indonesia dari BPS. Filter by tahun (misal: 2024)"""
+  inflasi(tahun: Int): [InflasiItem!]!
+}

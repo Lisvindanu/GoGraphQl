@@ -1,0 +1,11 @@
+type IuranBPJS {
+  kelas: String!
+  segmen: String!
+  nominal: Int!
+  keterangan: String!
+}
+
+extend type Query {
+  """Daftar iuran BPJS Kesehatan per kelas dan segmen peserta"""
+  iuranBPJS: [IuranBPJS!]!
+}

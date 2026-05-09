@@ -1,0 +1,21 @@
+type StasiunKRL {
+  stasiunId: String!
+  stasiunNama: String!
+  stasiunKode: String!
+}
+
+type JadwalKRL {
+  trainId: String!
+  kaName: String!
+  routeName: String!
+  destTime: String!
+  destStasiun: String!
+  colorCode: String!
+}
+
+extend type Query {
+  """Daftar stasiun KRL Commuter Line Jabodetabek"""
+  stasiunKRL: [StasiunKRL!]!
+  """Jadwal keberangkatan KRL dari stasiun tertentu. timeFrom/timeTo format HH:MM (misal: 06:00)"""
+  jadwalKRL(stasiunId: String!, timeFrom: String, timeTo: String): [JadwalKRL!]!
+}
