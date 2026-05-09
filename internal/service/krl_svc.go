@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"io"
 	"net/http"
+	"strings"
 	"time"
 )
 
@@ -49,18 +50,22 @@ func (s *KRLService) fetch(apiURL string) ([]byte, error) {
 	return io.ReadAll(resp.Body)
 }
 
+const comulineBaseURL = "https://www.api.comuline.com"
+
 func (s *KRLService) GetStasiun() ([]StasiunKRL, error) {
-	body, err := s.fetch("https://api-partner.krl.co.id/krlweb/v1/stasiun?status=all")
+	body, err := s.fetch(comulineBaseURL + "/v1/station")
 	if err != nil {
 		return nil, err
 	}
 
 	var root struct {
-		Status int `json:"status"`
-		Data   []struct {
-			StasiunID   string `json:"stasiun_id"`
-			StasiunNama string `json:"stasiun_nama"`
-			StasiunKode string `json:"stasiun_kode"`
+		Metadata struct {
+			Success bool `json:"success"`
+		} `json:"metadata"`
+		Data []struct {
+			ID   string `json:"id"`
+			Name string `json:"name"`
+			Type string `json:"type"`
 		} `json:"data"`
 	}
 	if err := json.Unmarshal(body, &root); err != nil {
@@ -69,27 +74,37 @@ func (s *KRLService) GetStasiun() ([]StasiunKRL, error) {
 
 	result := make([]StasiunKRL, 0, len(root.Data))
 	for _, d := range root.Data {
+		if d.Type != "KRL" {
+			continue
+		}
 		result = append(result, StasiunKRL{
-			StasiunId:   d.StasiunID,
-			StasiunNama: d.StasiunNama,
-			StasiunKode: d.StasiunKode,
+			StasiunId:   d.ID,
+			StasiunNama: d.Name,
+			StasiunKode: d.ID,
 		})
 	}
 	return result, nil
 }
 
-func (s *KRLService) GetJadwal(stasiunId, timeFrom, timeTo string) ([]JadwalKRL, error) {
-	if timeFrom == "" {
-		timeFrom = "00:00"
-	}
-	if timeTo == "" {
-		timeTo = "23:59"
-	}
+var wib = time.FixedZone("WIB", 7*3600)
 
-	apiURL := fmt.Sprintf(
-		"https://api-partner.krl.co.id/krlweb/v1/schedule?stasiunid=%s&timeFrom=%s&timeTo=%s",
-		stasiunId, timeFrom, timeTo,
-	)
+func parseDestTime(departsAt string) string {
+	// Try RFC3339Nano first (handles fractional seconds like "2024-03-10T09:55:07.213Z")
+	if t, err := time.Parse(time.RFC3339Nano, departsAt); err == nil {
+		return t.In(wib).Format("15:04")
+	}
+	if t, err := time.Parse(time.RFC3339, departsAt); err == nil {
+		return t.In(wib).Format("15:04")
+	}
+	// Fallback: extract HH:mm from "...THH:mm:ss..."
+	if idx := strings.Index(departsAt, "T"); idx >= 0 && len(departsAt) >= idx+6 {
+		return departsAt[idx+1 : idx+6]
+	}
+	return departsAt
+}
+
+func (s *KRLService) GetJadwal(stasiunId, timeFrom, timeTo string) ([]JadwalKRL, error) {
+	apiURL := fmt.Sprintf("%s/v1/schedule/%s", comulineBaseURL, stasiunId)
 
 	body, err := s.fetch(apiURL)
 	if err != nil {
@@ -97,14 +112,20 @@ func (s *KRLService) GetJadwal(stasiunId, timeFrom, timeTo string) ([]JadwalKRL,
 	}
 
 	var root struct {
-		Status int `json:"status"`
-		Data   []struct {
-			TrainID         string `json:"train_id"`
-			KaName          string `json:"ka_name"`
-			RouteName       string `json:"route_name"`
-			DestTime        string `json:"dest_time"`
-			DestStationName string `json:"dest_station_name"`
-			ColorCode       string `json:"color_code"`
+		Metadata struct {
+			Success bool `json:"success"`
+		} `json:"metadata"`
+		Data []struct {
+			TrainID              string `json:"train_id"`
+			Line                 string `json:"line"`
+			Route                string `json:"route"`
+			DepartsAt            string `json:"departs_at"`
+			StationDestinationID string `json:"station_destination_id"`
+			Metadata             struct {
+				Origin struct {
+					Color *string `json:"color"`
+				} `json:"origin"`
+			} `json:"metadata"`
 		} `json:"data"`
 	}
 	if err := json.Unmarshal(body, &root); err != nil {
@@ -113,13 +134,27 @@ func (s *KRLService) GetJadwal(stasiunId, timeFrom, timeTo string) ([]JadwalKRL,
 
 	result := make([]JadwalKRL, 0, len(root.Data))
 	for _, d := range root.Data {
+		destTime := parseDestTime(d.DepartsAt)
+
+		if timeFrom != "" && destTime < timeFrom {
+			continue
+		}
+		if timeTo != "" && destTime > timeTo {
+			continue
+		}
+
+		colorCode := ""
+		if d.Metadata.Origin.Color != nil {
+			colorCode = *d.Metadata.Origin.Color
+		}
+
 		result = append(result, JadwalKRL{
 			TrainId:     d.TrainID,
-			KaName:      d.KaName,
-			RouteName:   d.RouteName,
-			DestTime:    d.DestTime,
-			DestStasiun: d.DestStationName,
-			ColorCode:   d.ColorCode,
+			KaName:      d.Line,
+			RouteName:   d.Route,
+			DestTime:    destTime,
+			DestStasiun: d.StationDestinationID,
+			ColorCode:   colorCode,
 		})
 	}
 	return result, nil
