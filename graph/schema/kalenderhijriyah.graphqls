@@ -1,0 +1,14 @@
+type KalenderHijriyahResult {
+  tanggalMasehi: String!
+  tanggalHijriyah: String!
+  hari: String!
+  hariArab: String!
+  bulan: String!
+  bulanArab: String!
+  tahun: Int!
+}
+
+extend type Query {
+  """Konversi tanggal Masehi ke kalender Hijriyah"""
+  kalenderHijriyah(tanggal: String!): KalenderHijriyahResult
+}

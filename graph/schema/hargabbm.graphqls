@@ -1,0 +1,11 @@
+type HargaBBMItem {
+  nama: String!
+  harga: Int!
+  satuan: String!
+  jenis: String!
+}
+
+extend type Query {
+  """Daftar harga BBM Pertamina"""
+  hargaBBM: [HargaBBMItem!]!
+}

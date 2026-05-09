@@ -1,0 +1,18 @@
+type GempaItem {
+  tanggal: String!
+  jam: String!
+  magnitude: String!
+  kedalaman: String!
+  lintang: String!
+  bujur: String!
+  wilayah: String!
+  potensi: String!
+  dirasakan: String!
+}
+
+extend type Query {
+  """Gempa bumi terbaru dari BMKG"""
+  gempaTerbaru: GempaItem
+  """15 gempa bumi terkini dari BMKG"""
+  gempaList: [GempaItem!]!
+}

@@ -8,6 +8,35 @@ type CuacaResult struct {
 	Prakiraan []*Prakiraan `json:"prakiraan"`
 }
 
+type GempaItem struct {
+	Tanggal   string `json:"tanggal"`
+	Jam       string `json:"jam"`
+	Magnitude string `json:"magnitude"`
+	Kedalaman string `json:"kedalaman"`
+	Lintang   string `json:"lintang"`
+	Bujur     string `json:"bujur"`
+	Wilayah   string `json:"wilayah"`
+	Potensi   string `json:"potensi"`
+	Dirasakan string `json:"dirasakan"`
+}
+
+type HargaBBMItem struct {
+	Nama   string `json:"nama"`
+	Harga  int    `json:"harga"`
+	Satuan string `json:"satuan"`
+	Jenis  string `json:"jenis"`
+}
+
+type KalenderHijriyahResult struct {
+	TanggalMasehi   string `json:"tanggalMasehi"`
+	TanggalHijriyah string `json:"tanggalHijriyah"`
+	Hari            string `json:"hari"`
+	HariArab        string `json:"hariArab"`
+	Bulan           string `json:"bulan"`
+	BulanArab       string `json:"bulanArab"`
+	Tahun           int    `json:"tahun"`
+}
+
 type KalenderJawaResult struct {
 	TanggalMasehi   string `json:"tanggalMasehi"`
 	Hari            string `json:"hari"`
@@ -21,6 +50,14 @@ type KalenderJawaResult struct {
 type KodeBankResult struct {
 	Kode string `json:"kode"`
 	Nama string `json:"nama"`
+}
+
+type KodePosResult struct {
+	KodePos   string `json:"kodePos"`
+	Kelurahan string `json:"kelurahan"`
+	Kecamatan string `json:"kecamatan"`
+	Kota      string `json:"kota"`
+	Provinsi  string `json:"provinsi"`
 }
 
 type KursResult struct {

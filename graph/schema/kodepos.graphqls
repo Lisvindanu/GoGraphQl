@@ -1,0 +1,12 @@
+type KodePosResult {
+  kodePos: String!
+  kelurahan: String!
+  kecamatan: String!
+  kota: String!
+  provinsi: String!
+}
+
+extend type Query {
+  """Cari wilayah berdasarkan kode pos (5 digit)"""
+  kodePos(kode: String!): [KodePosResult!]!
+}

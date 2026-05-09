@@ -52,8 +52,12 @@ func main() {
 	kodeBankSvc := service.NewKodeBankService()
 	platNomorSvc := service.NewPlatNomorService()
 	waktuSholatSvc := service.NewWaktuSholatService(c, cuacaSvc)
+	gempaSvc := service.NewGempaService()
+	kodePosSvc := service.NewKodePosService(pool)
+	kalenderHijriyahSvc := service.NewKalenderHijriyahService()
+	hargaBBMSvc := service.NewHargaBBMService()
 
-	resolver := graph.NewResolver(wilayahSvc, hariLiburSvc, cuacaSvc, kursSvc, nikSvc, kodeBankSvc, platNomorSvc, waktuSholatSvc)
+	resolver := graph.NewResolver(wilayahSvc, hariLiburSvc, cuacaSvc, kursSvc, nikSvc, kodeBankSvc, platNomorSvc, waktuSholatSvc, gempaSvc, kodePosSvc, kalenderHijriyahSvc, hargaBBMSvc)
 
 	srv := handler.New(graph.NewExecutableSchema(graph.Config{
 		Resolvers: resolver,

@@ -6,14 +6,18 @@ import (
 
 // Resolver adalah root resolver yang menyimpan semua service dependencies.
 type Resolver struct {
-	wilayahSvc     *service.WilayahService
-	hariLiburSvc   *service.HariLiburService
-	cuacaSvc       *service.CuacaService
-	kursSvc        *service.KursService
-	nikSvc         *service.NIKService
-	kodeBankSvc    *service.KodeBankService
-	platNomorSvc   *service.PlatNomorService
-	waktuSholatSvc *service.WaktuSholatService
+	wilayahSvc          *service.WilayahService
+	hariLiburSvc        *service.HariLiburService
+	cuacaSvc            *service.CuacaService
+	kursSvc             *service.KursService
+	nikSvc              *service.NIKService
+	kodeBankSvc         *service.KodeBankService
+	platNomorSvc        *service.PlatNomorService
+	waktuSholatSvc      *service.WaktuSholatService
+	gempaSvc            *service.GempaService
+	kodePosSvc          *service.KodePosService
+	kalenderHijriyahSvc *service.KalenderHijriyahService
+	hargaBBMSvc         *service.HargaBBMService
 }
 
 func NewResolver(
@@ -25,15 +29,23 @@ func NewResolver(
 	kodeBankSvc *service.KodeBankService,
 	platNomorSvc *service.PlatNomorService,
 	waktuSholatSvc *service.WaktuSholatService,
+	gempaSvc *service.GempaService,
+	kodePosSvc *service.KodePosService,
+	kalenderHijriyahSvc *service.KalenderHijriyahService,
+	hargaBBMSvc *service.HargaBBMService,
 ) *Resolver {
 	return &Resolver{
-		wilayahSvc:     wilayahSvc,
-		hariLiburSvc:   hariLiburSvc,
-		cuacaSvc:       cuacaSvc,
-		kursSvc:        kursSvc,
-		nikSvc:         nikSvc,
-		kodeBankSvc:    kodeBankSvc,
-		platNomorSvc:   platNomorSvc,
-		waktuSholatSvc: waktuSholatSvc,
+		wilayahSvc:          wilayahSvc,
+		hariLiburSvc:        hariLiburSvc,
+		cuacaSvc:            cuacaSvc,
+		kursSvc:             kursSvc,
+		nikSvc:              nikSvc,
+		kodeBankSvc:         kodeBankSvc,
+		platNomorSvc:        platNomorSvc,
+		waktuSholatSvc:      waktuSholatSvc,
+		gempaSvc:            gempaSvc,
+		kodePosSvc:          kodePosSvc,
+		kalenderHijriyahSvc: kalenderHijriyahSvc,
+		hargaBBMSvc:         hargaBBMSvc,
 	}
 }
