@@ -31,29 +31,35 @@ var bulanHijriyahArab = []string{
 var hariIndonesia = []string{"Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"}
 var hariArab = []string{"الأحد", "الإثنين", "الثلاثاء", "الأربعاء", "الخميس", "الجمعة", "السبت"}
 
+func islamicToJD(year, month, day int) float64 {
+	return float64(day) +
+		math.Ceil(29.5*float64(month-1)) +
+		float64(year-1)*354.0 +
+		math.Floor((11.0*float64(year)+3.0)/30.0) +
+		1948439.5
+}
+
 func gregorianToHijri(year, month, day int) (int, int, int) {
-	// Julian Day Number untuk tanggal Gregorian
+	// Gregorian ke Julian Day Number
 	a := (14 - month) / 12
 	y := year + 4800 - a
 	m := month + 12*a - 3
 	jdn := day + (153*m+2)/5 + 365*y + y/4 - y/100 + y/400 - 32045
 
-	// Konversi JDN ke Hijriyah
-	l := jdn - 1948440 + 10632
-	n := (l-1)/10631
-	l = l - 10631*n + 354
-	j := (10985-l)/5316
-	k := (50*l - 119) / 1768
-	l = l - (1317*j)/900 - (j * 10) + (44*k)/1800 - k
-	j = (11*n + 3) / 30
-	i := 30 * (n + 1)
-	i = i - j
-	i = i + int(math.Floor(float64(l-1)/29.5001)) + 1
-	l = l - int(math.Floor(float64(i-1)*29.5001))
+	// JDN ke Hijriyah (Fourmilab algorithm, epoch = 1948439.5)
+	jd := float64(jdn) + 0.5
 
-	hYear := 30*(n-1) + int(math.Ceil(float64(i)/1.05263)) + j
-	hMonth := i
-	hDay := l
+	hYear := int(math.Floor(((30.0*(jd-1948439.5)) + 10646.0) / 10631.0))
+
+	hMonth := int(math.Ceil((jd-(29.0+islamicToJD(hYear, 1, 1)))/29.5)) + 1
+	if hMonth < 1 {
+		hMonth = 1
+	}
+	if hMonth > 12 {
+		hMonth = 12
+	}
+
+	hDay := int(jd-islamicToJD(hYear, hMonth, 1)) + 1
 
 	return hYear, hMonth, hDay
 }
