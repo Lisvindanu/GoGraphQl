@@ -52,38 +52,97 @@ func (s *KRLService) fetch(apiURL string) ([]byte, error) {
 
 const comulineBaseURL = "https://www.api.comuline.com"
 
+// stasiunList adalah daftar statis stasiun KRL Commuter Line Jabodetabek & Yogyakarta.
+// ID disesuaikan dengan sistem Comuline untuk kompatibilitas jadwal.
+var stasiunList = []StasiunKRL{
+	// Lintas Jakarta Kota - Bogor/Nambo
+	{StasiunId: "JAKK", StasiunNama: "Jakarta Kota", StasiunKode: "JAKK"},
+	{StasiunId: "JAKJ", StasiunNama: "Jayakarta", StasiunKode: "JAKJ"},
+	{StasiunId: "MGB", StasiunNama: "Mangga Besar", StasiunKode: "MGB"},
+	{StasiunId: "SWB", StasiunNama: "Sawah Besar", StasiunKode: "SWB"},
+	{StasiunId: "JUA", StasiunNama: "Juanda", StasiunKode: "JUA"},
+	{StasiunId: "GMB", StasiunNama: "Gambir", StasiunKode: "GMB"},
+	{StasiunId: "GDD", StasiunNama: "Gondangdia", StasiunKode: "GDD"},
+	{StasiunId: "CKI", StasiunNama: "Cikini", StasiunKode: "CKI"},
+	{StasiunId: "MRI", StasiunNama: "Manggarai", StasiunKode: "MRI"},
+	{StasiunId: "TBT", StasiunNama: "Tebet", StasiunKode: "TBT"},
+	{StasiunId: "CWG", StasiunNama: "Cawang", StasiunKode: "CWG"},
+	{StasiunId: "DRK", StasiunNama: "Duren Kalibata", StasiunKode: "DRK"},
+	{StasiunId: "PSB", StasiunNama: "Pasar Minggu Baru", StasiunKode: "PSB"},
+	{StasiunId: "PSM", StasiunNama: "Pasar Minggu", StasiunKode: "PSM"},
+	{StasiunId: "TJB", StasiunNama: "Tanjung Barat", StasiunKode: "TJB"},
+	{StasiunId: "LNA", StasiunNama: "Lenteng Agung", StasiunKode: "LNA"},
+	{StasiunId: "UPN", StasiunNama: "Universitas Pancasila", StasiunKode: "UPN"},
+	{StasiunId: "UI", StasiunNama: "Universitas Indonesia", StasiunKode: "UI"},
+	{StasiunId: "POC", StasiunNama: "Pondok Cina", StasiunKode: "POC"},
+	{StasiunId: "DPB", StasiunNama: "Depok Baru", StasiunKode: "DPB"},
+	{StasiunId: "DP", StasiunNama: "Depok", StasiunKode: "DP"},
+	{StasiunId: "CTY", StasiunNama: "Citayam", StasiunKode: "CTY"},
+	{StasiunId: "BJG", StasiunNama: "Bojong Gede", StasiunKode: "BJG"},
+	{StasiunId: "CLB", StasiunNama: "Cilebut", StasiunKode: "CLB"},
+	{StasiunId: "BO", StasiunNama: "Bogor", StasiunKode: "BO"},
+	// Nambo
+	{StasiunId: "NMB", StasiunNama: "Nambo", StasiunKode: "NMB"},
+	{StasiunId: "CRB", StasiunNama: "Cibinong", StasiunKode: "CRB"},
+	// Lintas Jatinegara - Cikarang
+	{StasiunId: "JNG", StasiunNama: "Jatinegara", StasiunKode: "JNG"},
+	{StasiunId: "KLD", StasiunNama: "Klender", StasiunKode: "KLD"},
+	{StasiunId: "BUA", StasiunNama: "Buaran", StasiunKode: "BUA"},
+	{StasiunId: "KLDB", StasiunNama: "Klender Baru", StasiunKode: "KLDB"},
+	{StasiunId: "CKG", StasiunNama: "Cakung", StasiunKode: "CKG"},
+	{StasiunId: "KRJ", StasiunNama: "Kranji", StasiunKode: "KRJ"},
+	{StasiunId: "BKS", StasiunNama: "Bekasi", StasiunKode: "BKS"},
+	{StasiunId: "BKST", StasiunNama: "Bekasi Timur", StasiunKode: "BKST"},
+	{StasiunId: "TBN", StasiunNama: "Tambun", StasiunKode: "TBN"},
+	{StasiunId: "CBT", StasiunNama: "Cibitung", StasiunKode: "CBT"},
+	{StasiunId: "CKR", StasiunNama: "Cikarang", StasiunKode: "CKR"},
+	// Lintas Tanah Abang - Rangkasbitung
+	{StasiunId: "THB", StasiunNama: "Tanah Abang", StasiunKode: "THB"},
+	{StasiunId: "PLM", StasiunNama: "Palmerah", StasiunKode: "PLM"},
+	{StasiunId: "KBY", StasiunNama: "Kebayoran", StasiunKode: "KBY"},
+	{StasiunId: "PDR", StasiunNama: "Pondok Ranji", StasiunKode: "PDR"},
+	{StasiunId: "JRG", StasiunNama: "Jurangmangu", StasiunKode: "JRG"},
+	{StasiunId: "SDM", StasiunNama: "Sudimara", StasiunKode: "SDM"},
+	{StasiunId: "RBT", StasiunNama: "Rawa Buntu", StasiunKode: "RBT"},
+	{StasiunId: "SRP", StasiunNama: "Serpong", StasiunKode: "SRP"},
+	{StasiunId: "CSK", StasiunNama: "Cisauk", StasiunKode: "CSK"},
+	{StasiunId: "CCY", StasiunNama: "Cicayur", StasiunKode: "CCY"},
+	{StasiunId: "PPJ", StasiunNama: "Parung Panjang", StasiunKode: "PPJ"},
+	{StasiunId: "LGK", StasiunNama: "Legok", StasiunKode: "LGK"},
+	{StasiunId: "TNJ", StasiunNama: "Tenjo", StasiunKode: "TNJ"},
+	{StasiunId: "TGR", StasiunNama: "Tigaraksa", StasiunKode: "TGR"},
+	{StasiunId: "MJA", StasiunNama: "Maja", StasiunKode: "MJA"},
+	{StasiunId: "CKY", StasiunNama: "Cikoya", StasiunKode: "CKY"},
+	{StasiunId: "CTR", StasiunNama: "Citeras", StasiunKode: "CTR"},
+	{StasiunId: "RKB", StasiunNama: "Rangkasbitung", StasiunKode: "RKB"},
+	// Lintas Duri - Tangerang
+	{StasiunId: "DRI", StasiunNama: "Duri", StasiunKode: "DRI"},
+	{StasiunId: "GGL", StasiunNama: "Grogol", StasiunKode: "GGL"},
+	{StasiunId: "PSG", StasiunNama: "Pesing", StasiunKode: "PSG"},
+	{StasiunId: "TMK", StasiunNama: "Taman Kota", StasiunKode: "TMK"},
+	{StasiunId: "BJI", StasiunNama: "Bojong Indah", StasiunKode: "BJI"},
+	{StasiunId: "RWB", StasiunNama: "Rawa Buaya", StasiunKode: "RWB"},
+	{StasiunId: "KLD2", StasiunNama: "Kalideres", StasiunKode: "KLD2"},
+	{StasiunId: "PRS", StasiunNama: "Poris", StasiunKode: "PRS"},
+	{StasiunId: "BTC", StasiunNama: "Batu Ceper", StasiunKode: "BTC"},
+	{StasiunId: "TTG", StasiunNama: "Tanah Tinggi", StasiunKode: "TTG"},
+	{StasiunId: "TNG", StasiunNama: "Tangerang", StasiunKode: "TNG"},
+	// Lintas Jakarta Kota - Tanjung Priok
+	{StasiunId: "KPB", StasiunNama: "Kampung Bandan", StasiunKode: "KPB"},
+	{StasiunId: "ANC", StasiunNama: "Ancol", StasiunKode: "ANC"},
+	{StasiunId: "TPK", StasiunNama: "Tanjung Priok", StasiunKode: "TPK"},
+	// Transit
+	{StasiunId: "SDR", StasiunNama: "Sudirman", StasiunKode: "SDR"},
+	// Lintas Yogyakarta
+	{StasiunId: "YK", StasiunNama: "Yogyakarta", StasiunKode: "YK"},
+	{StasiunId: "LPN", StasiunNama: "Lempuyangan", StasiunKode: "LPN"},
+	{StasiunId: "MRI2", StasiunNama: "Maguwo", StasiunKode: "MRI2"},
+	{StasiunId: "BWK", StasiunNama: "Brambanan", StasiunKode: "BWK"},
+	{StasiunId: "KT", StasiunNama: "Klaten", StasiunKode: "KT"},
+}
+
 func (s *KRLService) GetStasiun() ([]StasiunKRL, error) {
-	body, err := s.fetch(comulineBaseURL + "/v1/station")
-	if err != nil {
-		return nil, err
-	}
-
-	var root struct {
-		Metadata struct {
-			Success bool `json:"success"`
-		} `json:"metadata"`
-		Data []struct {
-			ID   string `json:"id"`
-			Name string `json:"name"`
-			Type string `json:"type"`
-		} `json:"data"`
-	}
-	if err := json.Unmarshal(body, &root); err != nil {
-		return nil, fmt.Errorf("parse stasiun: %w", err)
-	}
-
-	result := make([]StasiunKRL, 0, len(root.Data))
-	for _, d := range root.Data {
-		if d.Type != "KRL" {
-			continue
-		}
-		result = append(result, StasiunKRL{
-			StasiunId:   d.ID,
-			StasiunNama: d.Name,
-			StasiunKode: d.ID,
-		})
-	}
-	return result, nil
+	return stasiunList, nil
 }
 
 var wib = time.FixedZone("WIB", 7*3600)
