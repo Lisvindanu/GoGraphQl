@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"io/fs"
 	"log/slog"
 	"net/http"
 	"os"
@@ -22,6 +23,7 @@ import (
 	"github.com/lisvindanuu/indonesiaql/internal/middleware"
 	"github.com/lisvindanuu/indonesiaql/internal/repository"
 	"github.com/lisvindanuu/indonesiaql/internal/service"
+	"github.com/lisvindanuu/indonesiaql/internal/staticdata"
 )
 
 func main() {
@@ -104,6 +106,9 @@ func main() {
 	}))
 
 	mux.Handle("/query", srv)
+
+	photosFS, _ := fs.Sub(staticdata.PhotosFS, "photos")
+	mux.Handle("/photos/", http.StripPrefix("/photos/", http.FileServer(http.FS(photosFS))))
 
 	var h http.Handler = mux
 	h = middleware.Recovery(h)
