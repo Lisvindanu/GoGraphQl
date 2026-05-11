@@ -4,6 +4,7 @@ type PahlawanNasional {
   tahunWafat: Int!
   deskripsi: String!
   tahunDiangkat: Int!
+  foto: String!
 }
 
 extend type Query {

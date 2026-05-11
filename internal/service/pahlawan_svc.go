@@ -13,6 +13,7 @@ type PahlawanResult struct {
 	TahunWafat    int
 	Deskripsi     string
 	TahunDiangkat int
+	Foto          string
 }
 
 type PahlawanService struct{}
@@ -28,6 +29,7 @@ func (s *PahlawanService) ListAll(_ context.Context) []PahlawanResult {
 			TahunWafat:    p.TahunWafat,
 			Deskripsi:     p.Deskripsi,
 			TahunDiangkat: p.TahunDiangkat,
+			Foto:          p.Foto,
 		}
 	}
 	return result

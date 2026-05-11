@@ -135,6 +135,7 @@ type PahlawanNasional struct {
 	TahunWafat    int    `json:"tahunWafat"`
 	Deskripsi     string `json:"deskripsi"`
 	TahunDiangkat int    `json:"tahunDiangkat"`
+	Foto          string `json:"foto"`
 }
 
 type PlatNomorResult struct {

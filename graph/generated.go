@@ -194,6 +194,7 @@ type ComplexityRoot struct {
 
 	PahlawanNasional struct {
 		Deskripsi     func(childComplexity int) int
+		Foto          func(childComplexity int) int
 		Nama          func(childComplexity int) int
 		TahunDiangkat func(childComplexity int) int
 		TahunLahir    func(childComplexity int) int
@@ -965,6 +966,12 @@ func (e *executableSchema) Complexity(ctx context.Context, typeName, field strin
 		}
 
 		return e.ComplexityRoot.PahlawanNasional.Deskripsi(childComplexity), true
+	case "PahlawanNasional.foto":
+		if e.ComplexityRoot.PahlawanNasional.Foto == nil {
+			break
+		}
+
+		return e.ComplexityRoot.PahlawanNasional.Foto(childComplexity), true
 	case "PahlawanNasional.nama":
 		if e.ComplexityRoot.PahlawanNasional.Nama == nil {
 			break
@@ -2020,6 +2027,8 @@ func (ec *executionContext) childFields_PahlawanNasional(ctx context.Context, fi
 		return ec.fieldContext_PahlawanNasional_deskripsi(ctx, field)
 	case "tahunDiangkat":
 		return ec.fieldContext_PahlawanNasional_tahunDiangkat(ctx, field)
+	case "foto":
+		return ec.fieldContext_PahlawanNasional_foto(ctx, field)
 	}
 	return nil, fmt.Errorf("no field named %q was found under type PahlawanNasional", field.Name)
 }
@@ -5006,6 +5015,29 @@ func (ec *executionContext) _PahlawanNasional_tahunDiangkat(ctx context.Context,
 }
 func (ec *executionContext) fieldContext_PahlawanNasional_tahunDiangkat(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	return graphql.NewScalarFieldContext("PahlawanNasional", field, false, false, errors.New("field of type Int does not have child fields"))
+}
+
+func (ec *executionContext) _PahlawanNasional_foto(ctx context.Context, field graphql.CollectedField, obj *model.PahlawanNasional) (ret graphql.Marshaler) {
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return ec.fieldContext_PahlawanNasional_foto(ctx, field)
+		},
+		func(ctx context.Context) (any, error) {
+			return obj.Foto, nil
+		},
+		nil,
+		func(ctx context.Context, selections ast.SelectionSet, v string) graphql.Marshaler {
+			return ec.marshalNString2string(ctx, selections, v)
+		},
+		true,
+		true,
+	)
+}
+func (ec *executionContext) fieldContext_PahlawanNasional_foto(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	return graphql.NewScalarFieldContext("PahlawanNasional", field, false, false, errors.New("field of type String does not have child fields"))
 }
 
 func (ec *executionContext) _PlatNomorResult_kode(ctx context.Context, field graphql.CollectedField, obj *model.PlatNomorResult) (ret graphql.Marshaler) {
@@ -9814,6 +9846,11 @@ func (ec *executionContext) _PahlawanNasional(ctx context.Context, sel ast.Selec
 			}
 		case "tahunDiangkat":
 			out.Values[i] = ec._PahlawanNasional_tahunDiangkat(ctx, field, obj)
+			if out.Values[i] == graphql.Null {
+				out.Invalids++
+			}
+		case "foto":
+			out.Values[i] = ec._PahlawanNasional_foto(ctx, field, obj)
 			if out.Values[i] == graphql.Null {
 				out.Invalids++
 			}

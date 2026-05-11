@@ -23,6 +23,7 @@ func (r *queryResolver) PahlawanList(ctx context.Context) ([]*model.PahlawanNasi
 			TahunWafat:    p.TahunWafat,
 			Deskripsi:     p.Deskripsi,
 			TahunDiangkat: p.TahunDiangkat,
+			Foto:          p.Foto,
 		}
 	}
 	return result, nil
@@ -40,6 +41,7 @@ func (r *queryResolver) PahlawanCari(ctx context.Context, nama string) ([]*model
 			TahunWafat:    p.TahunWafat,
 			Deskripsi:     p.Deskripsi,
 			TahunDiangkat: p.TahunDiangkat,
+			Foto:          p.Foto,
 		}
 	}
 	return result, nil
