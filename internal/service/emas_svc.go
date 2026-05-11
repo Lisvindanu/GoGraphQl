@@ -26,10 +26,6 @@ func NewEmasService() *EmasService {
 	}
 }
 
-var (
-	reGram  = regexp.MustCompile(`(?i)(\d+(?:[.,]\d+)?)\s*gr`)
-	rePrice = regexp.MustCompile(`[\d.,]+`)
-)
 
 func parseIDRInt(s string) int {
 	cleaned := strings.ReplaceAll(s, ".", "")
