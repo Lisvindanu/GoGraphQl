@@ -1,0 +1,14 @@
+type PahlawanNasional {
+  nama: String!
+  tahunLahir: Int!
+  tahunWafat: Int!
+  deskripsi: String!
+  tahunDiangkat: Int!
+}
+
+extend type Query {
+  """Daftar semua pahlawan nasional Indonesia"""
+  pahlawanList: [PahlawanNasional!]!
+  """Cari pahlawan berdasarkan nama (partial match)"""
+  pahlawanCari(nama: String!): [PahlawanNasional!]!
+}

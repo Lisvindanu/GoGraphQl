@@ -1,0 +1,14 @@
+type GunungBerapi {
+  nama: String!
+  bentuk: String!
+  tinggiMeter: String!
+  estimasiLetusanTerakhir: String!
+  geolokasi: String!
+}
+
+extend type Query {
+  """Daftar semua gunung berapi di Indonesia"""
+  gunungBerapiList: [GunungBerapi!]!
+  """Cari gunung berapi berdasarkan nama (partial match)"""
+  gunungBerapiCari(nama: String!): [GunungBerapi!]!
+}

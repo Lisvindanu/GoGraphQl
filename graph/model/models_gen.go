@@ -27,6 +27,14 @@ type GempaItem struct {
 	Dirasakan string `json:"dirasakan"`
 }
 
+type GunungBerapi struct {
+	Nama                    string `json:"nama"`
+	Bentuk                  string `json:"bentuk"`
+	TinggiMeter             string `json:"tinggiMeter"`
+	EstimasiLetusanTerakhir string `json:"estimasiLetusanTerakhir"`
+	Geolokasi               string `json:"geolokasi"`
+}
+
 type HargaBBMItem struct {
 	Nama   string `json:"nama"`
 	Harga  int    `json:"harga"`
@@ -119,6 +127,14 @@ type NIKResult struct {
 	TanggalLahir *string  `json:"tanggalLahir,omitempty"`
 	JenisKelamin *string  `json:"jenisKelamin,omitempty"`
 	Errors       []string `json:"errors,omitempty"`
+}
+
+type PahlawanNasional struct {
+	Nama          string `json:"nama"`
+	TahunLahir    int    `json:"tahunLahir"`
+	TahunWafat    int    `json:"tahunWafat"`
+	Deskripsi     string `json:"deskripsi"`
+	TahunDiangkat int    `json:"tahunDiangkat"`
 }
 
 type PlatNomorResult struct {

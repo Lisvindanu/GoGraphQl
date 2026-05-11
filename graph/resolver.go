@@ -25,6 +25,8 @@ type Resolver struct {
 	umrSvc              *service.UMRService
 	elasSvc             *service.EmasService
 	bandaraSvc          *service.BandaraService
+	gunungBerapiSvc     *service.GunungBerapiService
+	pahlawanSvc         *service.PahlawanService
 }
 
 func NewResolver(
@@ -47,6 +49,8 @@ func NewResolver(
 	umrSvc *service.UMRService,
 	elasSvc *service.EmasService,
 	bandaraSvc *service.BandaraService,
+	gunungBerapiSvc *service.GunungBerapiService,
+	pahlawanSvc *service.PahlawanService,
 ) *Resolver {
 	return &Resolver{
 		wilayahSvc:          wilayahSvc,
@@ -68,5 +72,7 @@ func NewResolver(
 		umrSvc:              umrSvc,
 		elasSvc:             elasSvc,
 		bandaraSvc:          bandaraSvc,
+		gunungBerapiSvc:     gunungBerapiSvc,
+		pahlawanSvc:         pahlawanSvc,
 	}
 }
