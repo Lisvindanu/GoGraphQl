@@ -121,6 +121,18 @@ type NIKResult struct {
 	Errors       []string `json:"errors,omitempty"`
 }
 
+type PenginapanItem struct {
+	ID      string  `json:"id"`
+	Nama    string  `json:"nama"`
+	Tipe    string  `json:"tipe"`
+	Alamat  *string `json:"alamat,omitempty"`
+	Bintang *string `json:"bintang,omitempty"`
+	Telepon *string `json:"telepon,omitempty"`
+	Website *string `json:"website,omitempty"`
+	Lat     float64 `json:"lat"`
+	Lon     float64 `json:"lon"`
+}
+
 type PlatNomorResult struct {
 	Kode     string `json:"kode"`
 	Wilayah  string `json:"wilayah"`
