@@ -1,0 +1,10 @@
+type HargaEmasItem {
+  gram: Float!
+  hargaJual: Int!
+  hargaBuyback: Int!
+}
+
+extend type Query {
+  """Harga emas Antam hari ini dari Logam Mulia"""
+  hargaEmas: [HargaEmasItem!]!
+}

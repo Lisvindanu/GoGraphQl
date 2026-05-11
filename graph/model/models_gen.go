@@ -2,6 +2,13 @@
 
 package model
 
+type Bandara struct {
+	KodeIata string `json:"kodeIATA"`
+	Nama     string `json:"nama"`
+	Kota     string `json:"kota"`
+	Provinsi string `json:"provinsi"`
+}
+
 type CuacaResult struct {
 	Provinsi  string       `json:"provinsi"`
 	Kota      string       `json:"kota"`
@@ -25,6 +32,12 @@ type HargaBBMItem struct {
 	Harga  int    `json:"harga"`
 	Satuan string `json:"satuan"`
 	Jenis  string `json:"jenis"`
+}
+
+type HargaEmasItem struct {
+	Gram         float64 `json:"gram"`
+	HargaJual    int     `json:"hargaJual"`
+	HargaBuyback int     `json:"hargaBuyback"`
 }
 
 type IHSGResult struct {
@@ -54,15 +67,6 @@ type IuranBpjs struct {
 	Segmen     string `json:"segmen"`
 	Nominal    int    `json:"nominal"`
 	Keterangan string `json:"keterangan"`
-}
-
-type JadwalKrl struct {
-	TrainID     string `json:"trainId"`
-	KaName      string `json:"kaName"`
-	RouteName   string `json:"routeName"`
-	DestTime    string `json:"destTime"`
-	DestStasiun string `json:"destStasiun"`
-	ColorCode   string `json:"colorCode"`
 }
 
 type KalenderHijriyahResult struct {
@@ -148,15 +152,16 @@ type SahamResult struct {
 	Waktu               string  `json:"waktu"`
 }
 
-type StasiunKrl struct {
-	StasiunID   string `json:"stasiunId"`
-	StasiunNama string `json:"stasiunNama"`
-	StasiunKode string `json:"stasiunKode"`
-}
-
 type TerbilangResult struct {
 	Angka     float64 `json:"angka"`
 	Terbilang string  `json:"terbilang"`
+}
+
+type UMRProvinsi struct {
+	Provinsi string `json:"provinsi"`
+	Kode     string `json:"kode"`
+	Upah     int    `json:"upah"`
+	Tahun    int    `json:"tahun"`
 }
 
 type ValidasiRekeningResult struct {

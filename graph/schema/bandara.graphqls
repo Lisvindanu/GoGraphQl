@@ -1,0 +1,13 @@
+type Bandara {
+  kodeIATA: String!
+  nama: String!
+  kota: String!
+  provinsi: String!
+}
+
+extend type Query {
+  """Daftar bandar udara di Indonesia"""
+  bandaraList: [Bandara!]!
+  """Detail bandara berdasarkan kode IATA"""
+  bandaraDetail(kode: String!): Bandara
+}

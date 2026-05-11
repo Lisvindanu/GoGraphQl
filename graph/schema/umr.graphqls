@@ -1,0 +1,13 @@
+type UMRProvinsi {
+  provinsi: String!
+  kode: String!
+  upah: Int!
+  tahun: Int!
+}
+
+extend type Query {
+  """Daftar Upah Minimum Regional (UMR/UMP) per provinsi tahun 2025"""
+  umrList(tahun: Int): [UMRProvinsi!]!
+  """UMR/UMP provinsi tertentu berdasarkan kode BPS atau nama provinsi"""
+  umr(provinsi: String!): UMRProvinsi
+}
