@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"net/http"
 	"net/url"
+	"strconv"
 	"strings"
 	"time"
 )
@@ -50,24 +51,57 @@ func NewPenginapanService() *PenginapanService {
 	}
 }
 
+type nominatimResult struct {
+	BoundingBox []string `json:"boundingbox"`
+}
+
+func (s *PenginapanService) geocodeBbox(kota string) (south, west, north, east float64, err error) {
+	reqURL := fmt.Sprintf(
+		"https://nominatim.openstreetmap.org/search?q=%s&countrycodes=id&format=json&limit=1",
+		url.QueryEscape(kota),
+	)
+	req, _ := http.NewRequest("GET", reqURL, nil)
+	req.Header.Set("User-Agent", "IndonesiaQL/1.0")
+
+	resp, err := s.client.Do(req)
+	if err != nil {
+		return 0, 0, 0, 0, fmt.Errorf("nominatim: %w", err)
+	}
+	defer resp.Body.Close()
+
+	var results []nominatimResult
+	if err := json.NewDecoder(resp.Body).Decode(&results); err != nil || len(results) == 0 {
+		return 0, 0, 0, 0, fmt.Errorf("kota tidak ditemukan: %s", kota)
+	}
+
+	bb := results[0].BoundingBox // [south, north, west, east]
+	if len(bb) < 4 {
+		return 0, 0, 0, 0, fmt.Errorf("bbox tidak valid")
+	}
+	parse := func(s string) float64 {
+		v, _ := strconv.ParseFloat(s, 64)
+		return v
+	}
+	return parse(bb[0]), parse(bb[2]), parse(bb[1]), parse(bb[3]), nil
+}
+
 func (s *PenginapanService) GetByKota(ctx context.Context, kota string) ([]PenginapanItem, error) {
 	kota = strings.TrimSpace(kota)
 	if kota == "" {
 		return nil, fmt.Errorf("nama kota tidak boleh kosong")
 	}
 
-	// Overpass QL: cari hotel/guest_house/hostel dalam area kota
-	// Gunakan regex case-insensitive agar "bandung" cocok dengan "Kota Bandung"
+	south, west, north, east, err := s.geocodeBbox(kota)
+	if err != nil {
+		return nil, err
+	}
+
 	query := fmt.Sprintf(`[out:json][timeout:30];
 (
-  area["name"~"%s",i]["boundary"="administrative"];
-  area["name"~"%s",i]["place"~"^(city|town|municipality)$"];
-)->.searchArea;
-(
-  node["tourism"~"^(hotel|guest_house|hostel|motel|inn)$"](area.searchArea);
-  way["tourism"~"^(hotel|guest_house|hostel|motel|inn)$"](area.searchArea);
+  node["tourism"~"^(hotel|guest_house|hostel|motel|inn)$"](%f,%f,%f,%f);
+  way["tourism"~"^(hotel|guest_house|hostel|motel|inn)$"](%f,%f,%f,%f);
 );
-out center tags 100;`, kota, kota)
+out center tags 100;`, south, west, north, east, south, west, north, east)
 
 	apiURL := "https://overpass-api.de/api/interpreter"
 	resp, err := s.client.PostForm(apiURL, url.Values{"data": {query}})
