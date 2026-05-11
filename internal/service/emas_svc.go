@@ -45,16 +45,16 @@ func parseGram(s string) float64 {
 }
 
 func (s *EmasService) GetAll() ([]HargaEmasItem, error) {
-	req, err := http.NewRequest("GET", "https://www.logammulia.com/id/harga-emas-hari-ini", nil)
+	req, err := http.NewRequest("GET", "https://hargaemas.id/harga/antam/", nil)
 	if err != nil {
 		return nil, fmt.Errorf("build request: %w", err)
 	}
-	req.Header.Set("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36")
+	req.Header.Set("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36")
 	req.Header.Set("Accept", "text/html,application/xhtml+xml")
 
 	resp, err := s.client.Do(req)
 	if err != nil {
-		return nil, fmt.Errorf("fetch logammulia: %w", err)
+		return nil, fmt.Errorf("fetch hargaemas.id: %w", err)
 	}
 	defer resp.Body.Close()
 
@@ -66,47 +66,26 @@ func (s *EmasService) GetAll() ([]HargaEmasItem, error) {
 	return parseEmasHTML(string(body))
 }
 
-// parseEmasHTML extracts gold price rows from logammulia.com HTML.
-// Each row contains: Gram | Harga Jual | Harga Buyback
+// parseEmasHTML extracts gold price rows from hargaemas.id HTML.
+// Grid structure: col-span-1 (gram) | col-span-2 (jual Rp...) | col-span-2 (buyback Rp...)
 func parseEmasHTML(html string) ([]HargaEmasItem, error) {
-	reRow := regexp.MustCompile(`(?s)<tr[^>]*>.*?</tr>`)
-	reCell := regexp.MustCompile(`(?s)<td[^>]*>(.*?)</td>`)
 	reStripTag := regexp.MustCompile(`<[^>]+>`)
+	reRow := regexp.MustCompile(`(?s)col-span-1[^>]*>\s*([\d.,]+)\s*</div>\s*<div[^>]*col-span-2[^>]*>\s*Rp([\d.,]+)\s*</div>\s*<div[^>]*col-span-2[^>]*>\s*Rp([\d.,]+)\s*</div>`)
 
-	rows := reRow.FindAllString(html, -1)
-	result := make([]HargaEmasItem, 0, 10)
+	matches := reRow.FindAllStringSubmatch(html, -1)
+	result := make([]HargaEmasItem, 0, 12)
 
-	for _, row := range rows {
-		cells := reCell.FindAllStringSubmatch(row, -1)
-		if len(cells) < 3 {
-			continue
-		}
-
-		cell0 := reStripTag.ReplaceAllString(cells[0][1], "")
-		gramMatch := reGram.FindStringSubmatch(cell0)
-		if gramMatch == nil {
-			continue
-		}
-		gram := parseGram(gramMatch[1])
+	for _, m := range matches {
+		gramStr := strings.TrimSpace(reStripTag.ReplaceAllString(m[1], ""))
+		gram := parseGram(gramStr)
 		if gram <= 0 {
 			continue
 		}
-
-		cell1 := reStripTag.ReplaceAllString(cells[1][1], "")
-		cell2 := reStripTag.ReplaceAllString(cells[2][1], "")
-
-		priceMatch1 := rePrice.FindString(strings.TrimSpace(cell1))
-		priceMatch2 := rePrice.FindString(strings.TrimSpace(cell2))
-		if priceMatch1 == "" || priceMatch2 == "" {
-			continue
-		}
-
-		jual := parseIDRInt(priceMatch1)
-		buyback := parseIDRInt(priceMatch2)
+		jual := parseIDRInt(m[2])
+		buyback := parseIDRInt(m[3])
 		if jual <= 0 || buyback <= 0 {
 			continue
 		}
-
 		result = append(result, HargaEmasItem{
 			Gram:         gram,
 			HargaJual:    jual,
