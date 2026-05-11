@@ -60,8 +60,8 @@ func (s *PenginapanService) GetByKota(ctx context.Context, kota string) ([]Pengi
 	// Gunakan regex case-insensitive agar "bandung" cocok dengan "Kota Bandung"
 	query := fmt.Sprintf(`[out:json][timeout:30];
 (
-  area["name"~"%s","i"]["boundary"="administrative"];
-  area["name"~"%s","i"]["place"~"^(city|town|municipality)$"];
+  area["name"~"%s",i]["boundary"="administrative"];
+  area["name"~"%s",i]["place"~"^(city|town|municipality)$"];
 )->.searchArea;
 (
   node["tourism"~"^(hotel|guest_house|hostel|motel|inn)$"](area.searchArea);
