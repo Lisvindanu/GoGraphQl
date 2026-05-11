@@ -56,14 +56,18 @@ func (s *PenginapanService) GetByKota(ctx context.Context, kota string) ([]Pengi
 		return nil, fmt.Errorf("nama kota tidak boleh kosong")
 	}
 
-	// Overpass QL: cari hotel/guest_house/hostel dalam area dengan nama kota
+	// Overpass QL: cari hotel/guest_house/hostel dalam area kota
+	// Gunakan regex case-insensitive agar "bandung" cocok dengan "Kota Bandung"
 	query := fmt.Sprintf(`[out:json][timeout:30];
-area["name"="%s"]["boundary"="administrative"]->.searchArea;
+(
+  area["name"~"%s","i"]["boundary"="administrative"];
+  area["name"~"%s","i"]["place"~"^(city|town|municipality)$"];
+)->.searchArea;
 (
   node["tourism"~"^(hotel|guest_house|hostel|motel|inn)$"](area.searchArea);
   way["tourism"~"^(hotel|guest_house|hostel|motel|inn)$"](area.searchArea);
 );
-out center tags 100;`, kota)
+out center tags 100;`, kota, kota)
 
 	apiURL := "https://overpass-api.de/api/interpreter"
 	resp, err := s.client.PostForm(apiURL, url.Values{"data": {query}})
