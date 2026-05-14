@@ -9,6 +9,13 @@ type Bandara struct {
 	Provinsi string `json:"provinsi"`
 }
 
+type BudayaDaerah struct {
+	Provinsi    string `json:"provinsi"`
+	RumahAdat   string `json:"rumahAdat"`
+	PakaianAdat string `json:"pakaianAdat"`
+	TariDaerah  string `json:"tariDaerah"`
+}
+
 type CuacaResult struct {
 	Provinsi  string       `json:"provinsi"`
 	Kota      string       `json:"kota"`
@@ -129,6 +136,21 @@ type NIKResult struct {
 	Errors       []string `json:"errors,omitempty"`
 }
 
+type NomorDarurat struct {
+	Nomor    string `json:"nomor"`
+	Layanan  string `json:"layanan"`
+	Kategori string `json:"kategori"`
+}
+
+type Ptn struct {
+	Nama       string `json:"nama"`
+	Singkatan  string `json:"singkatan"`
+	Kota       string `json:"kota"`
+	Provinsi   string `json:"provinsi"`
+	Akreditasi string `json:"akreditasi"`
+	Jenis      string `json:"jenis"`
+}
+
 type PahlawanNasional struct {
 	Nama          string `json:"nama"`
 	TahunLahir    int    `json:"tahunLahir"`
@@ -153,6 +175,14 @@ type Prakiraan struct {
 	ArahAngin      string `json:"arahAngin"`
 }
 
+type Presiden struct {
+	Urutan        int    `json:"urutan"`
+	Nama          string `json:"nama"`
+	WakilPresiden string `json:"wakilPresiden"`
+	MulaiJabatan  int    `json:"mulaiJabatan"`
+	AkhirJabatan  int    `json:"akhirJabatan"`
+}
+
 type Query struct {
 }
 
@@ -167,6 +197,14 @@ type SahamResult struct {
 	Low                 float64 `json:"low"`
 	Volume              int     `json:"volume"`
 	Waktu               string  `json:"waktu"`
+}
+
+type StasiunKereta struct {
+	Nama  string `json:"nama"`
+	Kode  string `json:"kode"`
+	Jalur string `json:"jalur"`
+	Tipe  string `json:"tipe"`
+	Kota  string `json:"kota"`
 }
 
 type TerbilangResult struct {

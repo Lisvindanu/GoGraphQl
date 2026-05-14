@@ -1,0 +1,13 @@
+type BudayaDaerah {
+  provinsi: String!
+  rumahAdat: String!
+  pakaianAdat: String!
+  tariDaerah: String!
+}
+
+extend type Query {
+  """Daftar budaya daerah (rumah adat, pakaian adat, tari) per provinsi"""
+  budayaDaerahList: [BudayaDaerah!]!
+  """Cari budaya daerah berdasarkan nama provinsi (partial match)"""
+  budayaDaerahCari(provinsi: String!): [BudayaDaerah!]!
+}

@@ -1,0 +1,14 @@
+type StasiunKereta {
+  nama: String!
+  kode: String!
+  jalur: String!
+  tipe: String!
+  kota: String!
+}
+
+extend type Query {
+  """Daftar semua stasiun kereta (KRL/MRT/LRT) di Jabodetabek"""
+  stasiunKeretaList: [StasiunKereta!]!
+  """Cari stasiun kereta berdasarkan nama (partial match)"""
+  stasiunKeretaCari(nama: String!): [StasiunKereta!]!
+}

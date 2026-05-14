@@ -1,0 +1,12 @@
+type NomorDarurat {
+  nomor: String!
+  layanan: String!
+  kategori: String!
+}
+
+extend type Query {
+  """Daftar semua nomor darurat di Indonesia"""
+  nomorDaruratList: [NomorDarurat!]!
+  """Cari nomor darurat berdasarkan layanan atau kategori (partial match)"""
+  nomorDaruratCari(query: String!): [NomorDarurat!]!
+}

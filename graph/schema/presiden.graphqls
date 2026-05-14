@@ -1,0 +1,14 @@
+type Presiden {
+  urutan: Int!
+  nama: String!
+  wakilPresiden: String!
+  mulaiJabatan: Int!
+  akhirJabatan: Int!
+}
+
+extend type Query {
+  """Daftar semua Presiden Republik Indonesia"""
+  presidenList: [Presiden!]!
+  """Cari presiden berdasarkan nama (partial match)"""
+  presidenCari(nama: String!): [Presiden!]!
+}

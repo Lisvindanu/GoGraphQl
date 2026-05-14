@@ -27,6 +27,11 @@ type Resolver struct {
 	bandaraSvc          *service.BandaraService
 	gunungBerapiSvc     *service.GunungBerapiService
 	pahlawanSvc         *service.PahlawanService
+	nomorDaruratSvc     *service.NomorDaruratService
+	presidenSvc         *service.PresidenService
+	stasiunKeretaSvc    *service.StasiunKeretaService
+	ptnSvc              *service.PTNService
+	budayaDaerahSvc     *service.BudayaDaerahService
 }
 
 func NewResolver(
@@ -51,6 +56,11 @@ func NewResolver(
 	bandaraSvc *service.BandaraService,
 	gunungBerapiSvc *service.GunungBerapiService,
 	pahlawanSvc *service.PahlawanService,
+	nomorDaruratSvc *service.NomorDaruratService,
+	presidenSvc *service.PresidenService,
+	stasiunKeretaSvc *service.StasiunKeretaService,
+	ptnSvc *service.PTNService,
+	budayaDaerahSvc *service.BudayaDaerahService,
 ) *Resolver {
 	return &Resolver{
 		wilayahSvc:          wilayahSvc,
@@ -74,5 +84,10 @@ func NewResolver(
 		bandaraSvc:          bandaraSvc,
 		gunungBerapiSvc:     gunungBerapiSvc,
 		pahlawanSvc:         pahlawanSvc,
+		nomorDaruratSvc:     nomorDaruratSvc,
+		presidenSvc:         presidenSvc,
+		stasiunKeretaSvc:    stasiunKeretaSvc,
+		ptnSvc:              ptnSvc,
+		budayaDaerahSvc:     budayaDaerahSvc,
 	}
 }

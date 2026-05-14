@@ -1,0 +1,15 @@
+type PTN {
+  nama: String!
+  singkatan: String!
+  kota: String!
+  provinsi: String!
+  akreditasi: String!
+  jenis: String!
+}
+
+extend type Query {
+  """Daftar semua Perguruan Tinggi Negeri (PTN) di Indonesia"""
+  ptnList: [PTN!]!
+  """Cari PTN berdasarkan nama atau kota (partial match)"""
+  ptnCari(query: String!): [PTN!]!
+}

@@ -48,6 +48,13 @@ type ComplexityRoot struct {
 		Provinsi func(childComplexity int) int
 	}
 
+	BudayaDaerah struct {
+		PakaianAdat func(childComplexity int) int
+		Provinsi    func(childComplexity int) int
+		RumahAdat   func(childComplexity int) int
+		TariDaerah  func(childComplexity int) int
+	}
+
 	CuacaResult struct {
 		Kota      func(childComplexity int) int
 		Prakiraan func(childComplexity int) int
@@ -192,6 +199,21 @@ type ComplexityRoot struct {
 		Valid        func(childComplexity int) int
 	}
 
+	NomorDarurat struct {
+		Kategori func(childComplexity int) int
+		Layanan  func(childComplexity int) int
+		Nomor    func(childComplexity int) int
+	}
+
+	PTN struct {
+		Akreditasi func(childComplexity int) int
+		Jenis      func(childComplexity int) int
+		Kota       func(childComplexity int) int
+		Nama       func(childComplexity int) int
+		Provinsi   func(childComplexity int) int
+		Singkatan  func(childComplexity int) int
+	}
+
 	PahlawanNasional struct {
 		Deskripsi     func(childComplexity int) int
 		Foto          func(childComplexity int) int
@@ -216,6 +238,14 @@ type ComplexityRoot struct {
 		Waktu          func(childComplexity int) int
 	}
 
+	Presiden struct {
+		AkhirJabatan  func(childComplexity int) int
+		MulaiJabatan  func(childComplexity int) int
+		Nama          func(childComplexity int) int
+		Urutan        func(childComplexity int) int
+		WakilPresiden func(childComplexity int) int
+	}
+
 	Provinsi struct {
 		Kode func(childComplexity int) int
 		Kota func(childComplexity int) int
@@ -223,41 +253,51 @@ type ComplexityRoot struct {
 	}
 
 	Query struct {
-		BandaraDetail    func(childComplexity int, kode string) int
-		BandaraList      func(childComplexity int) int
-		Cuaca            func(childComplexity int, provinsiKode string, kota string) int
-		GempaList        func(childComplexity int) int
-		GempaTerbaru     func(childComplexity int) int
-		GunungBerapiCari func(childComplexity int, nama string) int
-		GunungBerapiList func(childComplexity int) int
-		HargaBbm         func(childComplexity int) int
-		HargaEmas        func(childComplexity int) int
-		HariLibur        func(childComplexity int, tahun int, bulan *int) int
-		HariLiburHariIni func(childComplexity int) int
-		Health           func(childComplexity int) int
-		Ihsg             func(childComplexity int) int
-		Inflasi          func(childComplexity int, tahun *int) int
-		IuranBpjs        func(childComplexity int) int
-		KalenderHijriyah func(childComplexity int, tanggal string) int
-		KalenderJawa     func(childComplexity int, tanggal string) int
-		KodeBank         func(childComplexity int, kode string) int
-		KodeBankList     func(childComplexity int) int
-		KodePos          func(childComplexity int, kode string) int
-		Kota             func(childComplexity int, kode string) int
-		Kurs             func(childComplexity int, mataUang *string) int
-		PahlawanCari     func(childComplexity int, nama string) int
-		PahlawanList     func(childComplexity int) int
-		PlatNomor        func(childComplexity int, kode string) int
-		Provinsi         func(childComplexity int, kode string) int
-		ProvinsiList     func(childComplexity int) int
-		Saham            func(childComplexity int, kode string) int
-		SearchWilayah    func(childComplexity int, query string, limit *int) int
-		Terbilang        func(childComplexity int, angka float64) int
-		Umr              func(childComplexity int, provinsi string) int
-		UmrList          func(childComplexity int, tahun *int) int
-		ValidasiNik      func(childComplexity int, nik string) int
-		ValidasiRekening func(childComplexity int, bank string, noRekening string) int
-		WaktuSholat      func(childComplexity int, kota string) int
+		BandaraDetail     func(childComplexity int, kode string) int
+		BandaraList       func(childComplexity int) int
+		BudayaDaerahCari  func(childComplexity int, provinsi string) int
+		BudayaDaerahList  func(childComplexity int) int
+		Cuaca             func(childComplexity int, provinsiKode string, kota string) int
+		GempaList         func(childComplexity int) int
+		GempaTerbaru      func(childComplexity int) int
+		GunungBerapiCari  func(childComplexity int, nama string) int
+		GunungBerapiList  func(childComplexity int) int
+		HargaBbm          func(childComplexity int) int
+		HargaEmas         func(childComplexity int) int
+		HariLibur         func(childComplexity int, tahun int, bulan *int) int
+		HariLiburHariIni  func(childComplexity int) int
+		Health            func(childComplexity int) int
+		Ihsg              func(childComplexity int) int
+		Inflasi           func(childComplexity int, tahun *int) int
+		IuranBpjs         func(childComplexity int) int
+		KalenderHijriyah  func(childComplexity int, tanggal string) int
+		KalenderJawa      func(childComplexity int, tanggal string) int
+		KodeBank          func(childComplexity int, kode string) int
+		KodeBankList      func(childComplexity int) int
+		KodePos           func(childComplexity int, kode string) int
+		Kota              func(childComplexity int, kode string) int
+		Kurs              func(childComplexity int, mataUang *string) int
+		NomorDaruratCari  func(childComplexity int, query string) int
+		NomorDaruratList  func(childComplexity int) int
+		PahlawanCari      func(childComplexity int, nama string) int
+		PahlawanList      func(childComplexity int) int
+		PlatNomor         func(childComplexity int, kode string) int
+		PresidenCari      func(childComplexity int, nama string) int
+		PresidenList      func(childComplexity int) int
+		Provinsi          func(childComplexity int, kode string) int
+		ProvinsiList      func(childComplexity int) int
+		PtnCari           func(childComplexity int, query string) int
+		PtnList           func(childComplexity int) int
+		Saham             func(childComplexity int, kode string) int
+		SearchWilayah     func(childComplexity int, query string, limit *int) int
+		StasiunKeretaCari func(childComplexity int, nama string) int
+		StasiunKeretaList func(childComplexity int) int
+		Terbilang         func(childComplexity int, angka float64) int
+		Umr               func(childComplexity int, provinsi string) int
+		UmrList           func(childComplexity int, tahun *int) int
+		ValidasiNik       func(childComplexity int, nik string) int
+		ValidasiRekening  func(childComplexity int, bank string, noRekening string) int
+		WaktuSholat       func(childComplexity int, kota string) int
 	}
 
 	SahamResult struct {
@@ -271,6 +311,14 @@ type ComplexityRoot struct {
 		Symbol              func(childComplexity int) int
 		Volume              func(childComplexity int) int
 		Waktu               func(childComplexity int) int
+	}
+
+	StasiunKereta struct {
+		Jalur func(childComplexity int) int
+		Kode  func(childComplexity int) int
+		Kota  func(childComplexity int) int
+		Nama  func(childComplexity int) int
+		Tipe  func(childComplexity int) int
 	}
 
 	TerbilangResult struct {
@@ -330,6 +378,8 @@ type QueryResolver interface {
 	BandaraList(ctx context.Context) ([]*model.Bandara, error)
 	BandaraDetail(ctx context.Context, kode string) (*model.Bandara, error)
 	IuranBpjs(ctx context.Context) ([]*model.IuranBpjs, error)
+	BudayaDaerahList(ctx context.Context) ([]*model.BudayaDaerah, error)
+	BudayaDaerahCari(ctx context.Context, provinsi string) ([]*model.BudayaDaerah, error)
 	Cuaca(ctx context.Context, provinsiKode string, kota string) (*model.CuacaResult, error)
 	HargaEmas(ctx context.Context) ([]*model.HargaEmasItem, error)
 	GempaTerbaru(ctx context.Context) (*model.GempaItem, error)
@@ -349,10 +399,18 @@ type QueryResolver interface {
 	KodePos(ctx context.Context, kode string) ([]*model.KodePosResult, error)
 	Kurs(ctx context.Context, mataUang *string) ([]*model.KursResult, error)
 	ValidasiNik(ctx context.Context, nik string) (*model.NIKResult, error)
+	NomorDaruratList(ctx context.Context) ([]*model.NomorDarurat, error)
+	NomorDaruratCari(ctx context.Context, query string) ([]*model.NomorDarurat, error)
 	PahlawanList(ctx context.Context) ([]*model.PahlawanNasional, error)
 	PahlawanCari(ctx context.Context, nama string) ([]*model.PahlawanNasional, error)
 	PlatNomor(ctx context.Context, kode string) (*model.PlatNomorResult, error)
+	PresidenList(ctx context.Context) ([]*model.Presiden, error)
+	PresidenCari(ctx context.Context, nama string) ([]*model.Presiden, error)
+	PtnList(ctx context.Context) ([]*model.Ptn, error)
+	PtnCari(ctx context.Context, query string) ([]*model.Ptn, error)
 	ValidasiRekening(ctx context.Context, bank string, noRekening string) (*model.ValidasiRekeningResult, error)
+	StasiunKeretaList(ctx context.Context) ([]*model.StasiunKereta, error)
+	StasiunKeretaCari(ctx context.Context, nama string) ([]*model.StasiunKereta, error)
 	Terbilang(ctx context.Context, angka float64) (*model.TerbilangResult, error)
 	UmrList(ctx context.Context, tahun *int) ([]*model.UMRProvinsi, error)
 	Umr(ctx context.Context, provinsi string) (*model.UMRProvinsi, error)
@@ -401,6 +459,31 @@ func (e *executableSchema) Complexity(ctx context.Context, typeName, field strin
 		}
 
 		return e.ComplexityRoot.Bandara.Provinsi(childComplexity), true
+
+	case "BudayaDaerah.pakaianAdat":
+		if e.ComplexityRoot.BudayaDaerah.PakaianAdat == nil {
+			break
+		}
+
+		return e.ComplexityRoot.BudayaDaerah.PakaianAdat(childComplexity), true
+	case "BudayaDaerah.provinsi":
+		if e.ComplexityRoot.BudayaDaerah.Provinsi == nil {
+			break
+		}
+
+		return e.ComplexityRoot.BudayaDaerah.Provinsi(childComplexity), true
+	case "BudayaDaerah.rumahAdat":
+		if e.ComplexityRoot.BudayaDaerah.RumahAdat == nil {
+			break
+		}
+
+		return e.ComplexityRoot.BudayaDaerah.RumahAdat(childComplexity), true
+	case "BudayaDaerah.tariDaerah":
+		if e.ComplexityRoot.BudayaDaerah.TariDaerah == nil {
+			break
+		}
+
+		return e.ComplexityRoot.BudayaDaerah.TariDaerah(childComplexity), true
 
 	case "CuacaResult.kota":
 		if e.ComplexityRoot.CuacaResult.Kota == nil {
@@ -960,6 +1043,62 @@ func (e *executableSchema) Complexity(ctx context.Context, typeName, field strin
 
 		return e.ComplexityRoot.NIKResult.Valid(childComplexity), true
 
+	case "NomorDarurat.kategori":
+		if e.ComplexityRoot.NomorDarurat.Kategori == nil {
+			break
+		}
+
+		return e.ComplexityRoot.NomorDarurat.Kategori(childComplexity), true
+	case "NomorDarurat.layanan":
+		if e.ComplexityRoot.NomorDarurat.Layanan == nil {
+			break
+		}
+
+		return e.ComplexityRoot.NomorDarurat.Layanan(childComplexity), true
+	case "NomorDarurat.nomor":
+		if e.ComplexityRoot.NomorDarurat.Nomor == nil {
+			break
+		}
+
+		return e.ComplexityRoot.NomorDarurat.Nomor(childComplexity), true
+
+	case "PTN.akreditasi":
+		if e.ComplexityRoot.PTN.Akreditasi == nil {
+			break
+		}
+
+		return e.ComplexityRoot.PTN.Akreditasi(childComplexity), true
+	case "PTN.jenis":
+		if e.ComplexityRoot.PTN.Jenis == nil {
+			break
+		}
+
+		return e.ComplexityRoot.PTN.Jenis(childComplexity), true
+	case "PTN.kota":
+		if e.ComplexityRoot.PTN.Kota == nil {
+			break
+		}
+
+		return e.ComplexityRoot.PTN.Kota(childComplexity), true
+	case "PTN.nama":
+		if e.ComplexityRoot.PTN.Nama == nil {
+			break
+		}
+
+		return e.ComplexityRoot.PTN.Nama(childComplexity), true
+	case "PTN.provinsi":
+		if e.ComplexityRoot.PTN.Provinsi == nil {
+			break
+		}
+
+		return e.ComplexityRoot.PTN.Provinsi(childComplexity), true
+	case "PTN.singkatan":
+		if e.ComplexityRoot.PTN.Singkatan == nil {
+			break
+		}
+
+		return e.ComplexityRoot.PTN.Singkatan(childComplexity), true
+
 	case "PahlawanNasional.deskripsi":
 		if e.ComplexityRoot.PahlawanNasional.Deskripsi == nil {
 			break
@@ -1053,6 +1192,37 @@ func (e *executableSchema) Complexity(ctx context.Context, typeName, field strin
 
 		return e.ComplexityRoot.Prakiraan.Waktu(childComplexity), true
 
+	case "Presiden.akhirJabatan":
+		if e.ComplexityRoot.Presiden.AkhirJabatan == nil {
+			break
+		}
+
+		return e.ComplexityRoot.Presiden.AkhirJabatan(childComplexity), true
+	case "Presiden.mulaiJabatan":
+		if e.ComplexityRoot.Presiden.MulaiJabatan == nil {
+			break
+		}
+
+		return e.ComplexityRoot.Presiden.MulaiJabatan(childComplexity), true
+	case "Presiden.nama":
+		if e.ComplexityRoot.Presiden.Nama == nil {
+			break
+		}
+
+		return e.ComplexityRoot.Presiden.Nama(childComplexity), true
+	case "Presiden.urutan":
+		if e.ComplexityRoot.Presiden.Urutan == nil {
+			break
+		}
+
+		return e.ComplexityRoot.Presiden.Urutan(childComplexity), true
+	case "Presiden.wakilPresiden":
+		if e.ComplexityRoot.Presiden.WakilPresiden == nil {
+			break
+		}
+
+		return e.ComplexityRoot.Presiden.WakilPresiden(childComplexity), true
+
 	case "Provinsi.kode":
 		if e.ComplexityRoot.Provinsi.Kode == nil {
 			break
@@ -1089,6 +1259,23 @@ func (e *executableSchema) Complexity(ctx context.Context, typeName, field strin
 		}
 
 		return e.ComplexityRoot.Query.BandaraList(childComplexity), true
+	case "Query.budayaDaerahCari":
+		if e.ComplexityRoot.Query.BudayaDaerahCari == nil {
+			break
+		}
+
+		args, err := ec.field_Query_budayaDaerahCari_args(ctx, rawArgs)
+		if err != nil {
+			return 0, false
+		}
+
+		return e.ComplexityRoot.Query.BudayaDaerahCari(childComplexity, args["provinsi"].(string)), true
+	case "Query.budayaDaerahList":
+		if e.ComplexityRoot.Query.BudayaDaerahList == nil {
+			break
+		}
+
+		return e.ComplexityRoot.Query.BudayaDaerahList(childComplexity), true
 	case "Query.cuaca":
 		if e.ComplexityRoot.Query.Cuaca == nil {
 			break
@@ -1260,6 +1447,23 @@ func (e *executableSchema) Complexity(ctx context.Context, typeName, field strin
 		}
 
 		return e.ComplexityRoot.Query.Kurs(childComplexity, args["mataUang"].(*string)), true
+	case "Query.nomorDaruratCari":
+		if e.ComplexityRoot.Query.NomorDaruratCari == nil {
+			break
+		}
+
+		args, err := ec.field_Query_nomorDaruratCari_args(ctx, rawArgs)
+		if err != nil {
+			return 0, false
+		}
+
+		return e.ComplexityRoot.Query.NomorDaruratCari(childComplexity, args["query"].(string)), true
+	case "Query.nomorDaruratList":
+		if e.ComplexityRoot.Query.NomorDaruratList == nil {
+			break
+		}
+
+		return e.ComplexityRoot.Query.NomorDaruratList(childComplexity), true
 	case "Query.pahlawanCari":
 		if e.ComplexityRoot.Query.PahlawanCari == nil {
 			break
@@ -1288,6 +1492,23 @@ func (e *executableSchema) Complexity(ctx context.Context, typeName, field strin
 		}
 
 		return e.ComplexityRoot.Query.PlatNomor(childComplexity, args["kode"].(string)), true
+	case "Query.presidenCari":
+		if e.ComplexityRoot.Query.PresidenCari == nil {
+			break
+		}
+
+		args, err := ec.field_Query_presidenCari_args(ctx, rawArgs)
+		if err != nil {
+			return 0, false
+		}
+
+		return e.ComplexityRoot.Query.PresidenCari(childComplexity, args["nama"].(string)), true
+	case "Query.presidenList":
+		if e.ComplexityRoot.Query.PresidenList == nil {
+			break
+		}
+
+		return e.ComplexityRoot.Query.PresidenList(childComplexity), true
 	case "Query.provinsi":
 		if e.ComplexityRoot.Query.Provinsi == nil {
 			break
@@ -1305,6 +1526,23 @@ func (e *executableSchema) Complexity(ctx context.Context, typeName, field strin
 		}
 
 		return e.ComplexityRoot.Query.ProvinsiList(childComplexity), true
+	case "Query.ptnCari":
+		if e.ComplexityRoot.Query.PtnCari == nil {
+			break
+		}
+
+		args, err := ec.field_Query_ptnCari_args(ctx, rawArgs)
+		if err != nil {
+			return 0, false
+		}
+
+		return e.ComplexityRoot.Query.PtnCari(childComplexity, args["query"].(string)), true
+	case "Query.ptnList":
+		if e.ComplexityRoot.Query.PtnList == nil {
+			break
+		}
+
+		return e.ComplexityRoot.Query.PtnList(childComplexity), true
 	case "Query.saham":
 		if e.ComplexityRoot.Query.Saham == nil {
 			break
@@ -1327,6 +1565,23 @@ func (e *executableSchema) Complexity(ctx context.Context, typeName, field strin
 		}
 
 		return e.ComplexityRoot.Query.SearchWilayah(childComplexity, args["query"].(string), args["limit"].(*int)), true
+	case "Query.stasiunKeretaCari":
+		if e.ComplexityRoot.Query.StasiunKeretaCari == nil {
+			break
+		}
+
+		args, err := ec.field_Query_stasiunKeretaCari_args(ctx, rawArgs)
+		if err != nil {
+			return 0, false
+		}
+
+		return e.ComplexityRoot.Query.StasiunKeretaCari(childComplexity, args["nama"].(string)), true
+	case "Query.stasiunKeretaList":
+		if e.ComplexityRoot.Query.StasiunKeretaList == nil {
+			break
+		}
+
+		return e.ComplexityRoot.Query.StasiunKeretaList(childComplexity), true
 	case "Query.terbilang":
 		if e.ComplexityRoot.Query.Terbilang == nil {
 			break
@@ -1454,6 +1709,37 @@ func (e *executableSchema) Complexity(ctx context.Context, typeName, field strin
 		}
 
 		return e.ComplexityRoot.SahamResult.Waktu(childComplexity), true
+
+	case "StasiunKereta.jalur":
+		if e.ComplexityRoot.StasiunKereta.Jalur == nil {
+			break
+		}
+
+		return e.ComplexityRoot.StasiunKereta.Jalur(childComplexity), true
+	case "StasiunKereta.kode":
+		if e.ComplexityRoot.StasiunKereta.Kode == nil {
+			break
+		}
+
+		return e.ComplexityRoot.StasiunKereta.Kode(childComplexity), true
+	case "StasiunKereta.kota":
+		if e.ComplexityRoot.StasiunKereta.Kota == nil {
+			break
+		}
+
+		return e.ComplexityRoot.StasiunKereta.Kota(childComplexity), true
+	case "StasiunKereta.nama":
+		if e.ComplexityRoot.StasiunKereta.Nama == nil {
+			break
+		}
+
+		return e.ComplexityRoot.StasiunKereta.Nama(childComplexity), true
+	case "StasiunKereta.tipe":
+		if e.ComplexityRoot.StasiunKereta.Tipe == nil {
+			break
+		}
+
+		return e.ComplexityRoot.StasiunKereta.Tipe(childComplexity), true
 
 	case "TerbilangResult.angka":
 		if e.ComplexityRoot.TerbilangResult.Angka == nil {
@@ -1670,7 +1956,7 @@ func newExecutionContext(
 	}
 }
 
-//go:embed "schema/bandara.graphqls" "schema/bpjs.graphqls" "schema/cuaca.graphqls" "schema/emas.graphqls" "schema/gempa.graphqls" "schema/gunungberapi.graphqls" "schema/hargabbm.graphqls" "schema/harilibur.graphqls" "schema/ihsg.graphqls" "schema/inflasi.graphqls" "schema/kalenderhijriyah.graphqls" "schema/kalenderjawa.graphqls" "schema/kodebank.graphqls" "schema/kodepos.graphqls" "schema/kurs.graphqls" "schema/nik.graphqls" "schema/pahlawan.graphqls" "schema/platnomor.graphqls" "schema/rekening.graphqls" "schema/schema.graphqls" "schema/terbilang.graphqls" "schema/umr.graphqls" "schema/waktusholat.graphqls" "schema/wilayah.graphqls"
+//go:embed "schema/bandara.graphqls" "schema/bpjs.graphqls" "schema/budayadaerah.graphqls" "schema/cuaca.graphqls" "schema/emas.graphqls" "schema/gempa.graphqls" "schema/gunungberapi.graphqls" "schema/hargabbm.graphqls" "schema/harilibur.graphqls" "schema/ihsg.graphqls" "schema/inflasi.graphqls" "schema/kalenderhijriyah.graphqls" "schema/kalenderjawa.graphqls" "schema/kodebank.graphqls" "schema/kodepos.graphqls" "schema/kurs.graphqls" "schema/nik.graphqls" "schema/nomordarurat.graphqls" "schema/pahlawan.graphqls" "schema/platnomor.graphqls" "schema/presiden.graphqls" "schema/ptn.graphqls" "schema/rekening.graphqls" "schema/schema.graphqls" "schema/stasiunkereta.graphqls" "schema/terbilang.graphqls" "schema/umr.graphqls" "schema/waktusholat.graphqls" "schema/wilayah.graphqls"
 var sourcesFS embed.FS
 
 func sourceData(filename string) string {
@@ -1684,6 +1970,7 @@ func sourceData(filename string) string {
 var sources = []*ast.Source{
 	{Name: "schema/bandara.graphqls", Input: sourceData("schema/bandara.graphqls"), BuiltIn: false},
 	{Name: "schema/bpjs.graphqls", Input: sourceData("schema/bpjs.graphqls"), BuiltIn: false},
+	{Name: "schema/budayadaerah.graphqls", Input: sourceData("schema/budayadaerah.graphqls"), BuiltIn: false},
 	{Name: "schema/cuaca.graphqls", Input: sourceData("schema/cuaca.graphqls"), BuiltIn: false},
 	{Name: "schema/emas.graphqls", Input: sourceData("schema/emas.graphqls"), BuiltIn: false},
 	{Name: "schema/gempa.graphqls", Input: sourceData("schema/gempa.graphqls"), BuiltIn: false},
@@ -1698,10 +1985,14 @@ var sources = []*ast.Source{
 	{Name: "schema/kodepos.graphqls", Input: sourceData("schema/kodepos.graphqls"), BuiltIn: false},
 	{Name: "schema/kurs.graphqls", Input: sourceData("schema/kurs.graphqls"), BuiltIn: false},
 	{Name: "schema/nik.graphqls", Input: sourceData("schema/nik.graphqls"), BuiltIn: false},
+	{Name: "schema/nomordarurat.graphqls", Input: sourceData("schema/nomordarurat.graphqls"), BuiltIn: false},
 	{Name: "schema/pahlawan.graphqls", Input: sourceData("schema/pahlawan.graphqls"), BuiltIn: false},
 	{Name: "schema/platnomor.graphqls", Input: sourceData("schema/platnomor.graphqls"), BuiltIn: false},
+	{Name: "schema/presiden.graphqls", Input: sourceData("schema/presiden.graphqls"), BuiltIn: false},
+	{Name: "schema/ptn.graphqls", Input: sourceData("schema/ptn.graphqls"), BuiltIn: false},
 	{Name: "schema/rekening.graphqls", Input: sourceData("schema/rekening.graphqls"), BuiltIn: false},
 	{Name: "schema/schema.graphqls", Input: sourceData("schema/schema.graphqls"), BuiltIn: false},
+	{Name: "schema/stasiunkereta.graphqls", Input: sourceData("schema/stasiunkereta.graphqls"), BuiltIn: false},
 	{Name: "schema/terbilang.graphqls", Input: sourceData("schema/terbilang.graphqls"), BuiltIn: false},
 	{Name: "schema/umr.graphqls", Input: sourceData("schema/umr.graphqls"), BuiltIn: false},
 	{Name: "schema/waktusholat.graphqls", Input: sourceData("schema/waktusholat.graphqls"), BuiltIn: false},
@@ -1725,6 +2016,20 @@ func (ec *executionContext) childFields_Bandara(ctx context.Context, field graph
 		return ec.fieldContext_Bandara_provinsi(ctx, field)
 	}
 	return nil, fmt.Errorf("no field named %q was found under type Bandara", field.Name)
+}
+
+func (ec *executionContext) childFields_BudayaDaerah(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+	switch field.Name {
+	case "provinsi":
+		return ec.fieldContext_BudayaDaerah_provinsi(ctx, field)
+	case "rumahAdat":
+		return ec.fieldContext_BudayaDaerah_rumahAdat(ctx, field)
+	case "pakaianAdat":
+		return ec.fieldContext_BudayaDaerah_pakaianAdat(ctx, field)
+	case "tariDaerah":
+		return ec.fieldContext_BudayaDaerah_tariDaerah(ctx, field)
+	}
+	return nil, fmt.Errorf("no field named %q was found under type BudayaDaerah", field.Name)
 }
 
 func (ec *executionContext) childFields_CuacaResult(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
@@ -2015,6 +2320,36 @@ func (ec *executionContext) childFields_NIKResult(ctx context.Context, field gra
 	return nil, fmt.Errorf("no field named %q was found under type NIKResult", field.Name)
 }
 
+func (ec *executionContext) childFields_NomorDarurat(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+	switch field.Name {
+	case "nomor":
+		return ec.fieldContext_NomorDarurat_nomor(ctx, field)
+	case "layanan":
+		return ec.fieldContext_NomorDarurat_layanan(ctx, field)
+	case "kategori":
+		return ec.fieldContext_NomorDarurat_kategori(ctx, field)
+	}
+	return nil, fmt.Errorf("no field named %q was found under type NomorDarurat", field.Name)
+}
+
+func (ec *executionContext) childFields_PTN(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+	switch field.Name {
+	case "nama":
+		return ec.fieldContext_PTN_nama(ctx, field)
+	case "singkatan":
+		return ec.fieldContext_PTN_singkatan(ctx, field)
+	case "kota":
+		return ec.fieldContext_PTN_kota(ctx, field)
+	case "provinsi":
+		return ec.fieldContext_PTN_provinsi(ctx, field)
+	case "akreditasi":
+		return ec.fieldContext_PTN_akreditasi(ctx, field)
+	case "jenis":
+		return ec.fieldContext_PTN_jenis(ctx, field)
+	}
+	return nil, fmt.Errorf("no field named %q was found under type PTN", field.Name)
+}
+
 func (ec *executionContext) childFields_PahlawanNasional(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
 	switch field.Name {
 	case "nama":
@@ -2063,6 +2398,22 @@ func (ec *executionContext) childFields_Prakiraan(ctx context.Context, field gra
 	return nil, fmt.Errorf("no field named %q was found under type Prakiraan", field.Name)
 }
 
+func (ec *executionContext) childFields_Presiden(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+	switch field.Name {
+	case "urutan":
+		return ec.fieldContext_Presiden_urutan(ctx, field)
+	case "nama":
+		return ec.fieldContext_Presiden_nama(ctx, field)
+	case "wakilPresiden":
+		return ec.fieldContext_Presiden_wakilPresiden(ctx, field)
+	case "mulaiJabatan":
+		return ec.fieldContext_Presiden_mulaiJabatan(ctx, field)
+	case "akhirJabatan":
+		return ec.fieldContext_Presiden_akhirJabatan(ctx, field)
+	}
+	return nil, fmt.Errorf("no field named %q was found under type Presiden", field.Name)
+}
+
 func (ec *executionContext) childFields_Provinsi(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
 	switch field.Name {
 	case "kode":
@@ -2099,6 +2450,22 @@ func (ec *executionContext) childFields_SahamResult(ctx context.Context, field g
 		return ec.fieldContext_SahamResult_waktu(ctx, field)
 	}
 	return nil, fmt.Errorf("no field named %q was found under type SahamResult", field.Name)
+}
+
+func (ec *executionContext) childFields_StasiunKereta(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+	switch field.Name {
+	case "nama":
+		return ec.fieldContext_StasiunKereta_nama(ctx, field)
+	case "kode":
+		return ec.fieldContext_StasiunKereta_kode(ctx, field)
+	case "jalur":
+		return ec.fieldContext_StasiunKereta_jalur(ctx, field)
+	case "tipe":
+		return ec.fieldContext_StasiunKereta_tipe(ctx, field)
+	case "kota":
+		return ec.fieldContext_StasiunKereta_kota(ctx, field)
+	}
+	return nil, fmt.Errorf("no field named %q was found under type StasiunKereta", field.Name)
 }
 
 func (ec *executionContext) childFields_TerbilangResult(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
@@ -2323,6 +2690,20 @@ func (ec *executionContext) field_Query_bandaraDetail_args(ctx context.Context, 
 	return args, nil
 }
 
+func (ec *executionContext) field_Query_budayaDaerahCari_args(ctx context.Context, rawArgs map[string]any) (map[string]any, error) {
+	var err error
+	args := map[string]any{}
+	arg0, err := graphql.ProcessArgField(ctx, rawArgs, "provinsi",
+		func(ctx context.Context, v any) (string, error) {
+			return ec.unmarshalNString2string(ctx, v)
+		})
+	if err != nil {
+		return nil, err
+	}
+	args["provinsi"] = arg0
+	return args, nil
+}
+
 func (ec *executionContext) field_Query_cuaca_args(ctx context.Context, rawArgs map[string]any) (map[string]any, error) {
 	var err error
 	args := map[string]any{}
@@ -2479,6 +2860,20 @@ func (ec *executionContext) field_Query_kurs_args(ctx context.Context, rawArgs m
 	return args, nil
 }
 
+func (ec *executionContext) field_Query_nomorDaruratCari_args(ctx context.Context, rawArgs map[string]any) (map[string]any, error) {
+	var err error
+	args := map[string]any{}
+	arg0, err := graphql.ProcessArgField(ctx, rawArgs, "query",
+		func(ctx context.Context, v any) (string, error) {
+			return ec.unmarshalNString2string(ctx, v)
+		})
+	if err != nil {
+		return nil, err
+	}
+	args["query"] = arg0
+	return args, nil
+}
+
 func (ec *executionContext) field_Query_pahlawanCari_args(ctx context.Context, rawArgs map[string]any) (map[string]any, error) {
 	var err error
 	args := map[string]any{}
@@ -2507,6 +2902,20 @@ func (ec *executionContext) field_Query_platNomor_args(ctx context.Context, rawA
 	return args, nil
 }
 
+func (ec *executionContext) field_Query_presidenCari_args(ctx context.Context, rawArgs map[string]any) (map[string]any, error) {
+	var err error
+	args := map[string]any{}
+	arg0, err := graphql.ProcessArgField(ctx, rawArgs, "nama",
+		func(ctx context.Context, v any) (string, error) {
+			return ec.unmarshalNString2string(ctx, v)
+		})
+	if err != nil {
+		return nil, err
+	}
+	args["nama"] = arg0
+	return args, nil
+}
+
 func (ec *executionContext) field_Query_provinsi_args(ctx context.Context, rawArgs map[string]any) (map[string]any, error) {
 	var err error
 	args := map[string]any{}
@@ -2518,6 +2927,20 @@ func (ec *executionContext) field_Query_provinsi_args(ctx context.Context, rawAr
 		return nil, err
 	}
 	args["kode"] = arg0
+	return args, nil
+}
+
+func (ec *executionContext) field_Query_ptnCari_args(ctx context.Context, rawArgs map[string]any) (map[string]any, error) {
+	var err error
+	args := map[string]any{}
+	arg0, err := graphql.ProcessArgField(ctx, rawArgs, "query",
+		func(ctx context.Context, v any) (string, error) {
+			return ec.unmarshalNString2string(ctx, v)
+		})
+	if err != nil {
+		return nil, err
+	}
+	args["query"] = arg0
 	return args, nil
 }
 
@@ -2554,6 +2977,20 @@ func (ec *executionContext) field_Query_searchWilayah_args(ctx context.Context, 
 		return nil, err
 	}
 	args["limit"] = arg1
+	return args, nil
+}
+
+func (ec *executionContext) field_Query_stasiunKeretaCari_args(ctx context.Context, rawArgs map[string]any) (map[string]any, error) {
+	var err error
+	args := map[string]any{}
+	arg0, err := graphql.ProcessArgField(ctx, rawArgs, "nama",
+		func(ctx context.Context, v any) (string, error) {
+			return ec.unmarshalNString2string(ctx, v)
+		})
+	if err != nil {
+		return nil, err
+	}
+	args["nama"] = arg0
 	return args, nil
 }
 
@@ -2803,6 +3240,98 @@ func (ec *executionContext) _Bandara_provinsi(ctx context.Context, field graphql
 }
 func (ec *executionContext) fieldContext_Bandara_provinsi(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	return graphql.NewScalarFieldContext("Bandara", field, false, false, errors.New("field of type String does not have child fields"))
+}
+
+func (ec *executionContext) _BudayaDaerah_provinsi(ctx context.Context, field graphql.CollectedField, obj *model.BudayaDaerah) (ret graphql.Marshaler) {
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return ec.fieldContext_BudayaDaerah_provinsi(ctx, field)
+		},
+		func(ctx context.Context) (any, error) {
+			return obj.Provinsi, nil
+		},
+		nil,
+		func(ctx context.Context, selections ast.SelectionSet, v string) graphql.Marshaler {
+			return ec.marshalNString2string(ctx, selections, v)
+		},
+		true,
+		true,
+	)
+}
+func (ec *executionContext) fieldContext_BudayaDaerah_provinsi(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	return graphql.NewScalarFieldContext("BudayaDaerah", field, false, false, errors.New("field of type String does not have child fields"))
+}
+
+func (ec *executionContext) _BudayaDaerah_rumahAdat(ctx context.Context, field graphql.CollectedField, obj *model.BudayaDaerah) (ret graphql.Marshaler) {
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return ec.fieldContext_BudayaDaerah_rumahAdat(ctx, field)
+		},
+		func(ctx context.Context) (any, error) {
+			return obj.RumahAdat, nil
+		},
+		nil,
+		func(ctx context.Context, selections ast.SelectionSet, v string) graphql.Marshaler {
+			return ec.marshalNString2string(ctx, selections, v)
+		},
+		true,
+		true,
+	)
+}
+func (ec *executionContext) fieldContext_BudayaDaerah_rumahAdat(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	return graphql.NewScalarFieldContext("BudayaDaerah", field, false, false, errors.New("field of type String does not have child fields"))
+}
+
+func (ec *executionContext) _BudayaDaerah_pakaianAdat(ctx context.Context, field graphql.CollectedField, obj *model.BudayaDaerah) (ret graphql.Marshaler) {
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return ec.fieldContext_BudayaDaerah_pakaianAdat(ctx, field)
+		},
+		func(ctx context.Context) (any, error) {
+			return obj.PakaianAdat, nil
+		},
+		nil,
+		func(ctx context.Context, selections ast.SelectionSet, v string) graphql.Marshaler {
+			return ec.marshalNString2string(ctx, selections, v)
+		},
+		true,
+		true,
+	)
+}
+func (ec *executionContext) fieldContext_BudayaDaerah_pakaianAdat(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	return graphql.NewScalarFieldContext("BudayaDaerah", field, false, false, errors.New("field of type String does not have child fields"))
+}
+
+func (ec *executionContext) _BudayaDaerah_tariDaerah(ctx context.Context, field graphql.CollectedField, obj *model.BudayaDaerah) (ret graphql.Marshaler) {
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return ec.fieldContext_BudayaDaerah_tariDaerah(ctx, field)
+		},
+		func(ctx context.Context) (any, error) {
+			return obj.TariDaerah, nil
+		},
+		nil,
+		func(ctx context.Context, selections ast.SelectionSet, v string) graphql.Marshaler {
+			return ec.marshalNString2string(ctx, selections, v)
+		},
+		true,
+		true,
+	)
+}
+func (ec *executionContext) fieldContext_BudayaDaerah_tariDaerah(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	return graphql.NewScalarFieldContext("BudayaDaerah", field, false, false, errors.New("field of type String does not have child fields"))
 }
 
 func (ec *executionContext) _CuacaResult_provinsi(ctx context.Context, field graphql.CollectedField, obj *model.CuacaResult) (ret graphql.Marshaler) {
@@ -4902,6 +5431,213 @@ func (ec *executionContext) fieldContext_NIKResult_errors(_ context.Context, fie
 	return graphql.NewScalarFieldContext("NIKResult", field, false, false, errors.New("field of type String does not have child fields"))
 }
 
+func (ec *executionContext) _NomorDarurat_nomor(ctx context.Context, field graphql.CollectedField, obj *model.NomorDarurat) (ret graphql.Marshaler) {
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return ec.fieldContext_NomorDarurat_nomor(ctx, field)
+		},
+		func(ctx context.Context) (any, error) {
+			return obj.Nomor, nil
+		},
+		nil,
+		func(ctx context.Context, selections ast.SelectionSet, v string) graphql.Marshaler {
+			return ec.marshalNString2string(ctx, selections, v)
+		},
+		true,
+		true,
+	)
+}
+func (ec *executionContext) fieldContext_NomorDarurat_nomor(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	return graphql.NewScalarFieldContext("NomorDarurat", field, false, false, errors.New("field of type String does not have child fields"))
+}
+
+func (ec *executionContext) _NomorDarurat_layanan(ctx context.Context, field graphql.CollectedField, obj *model.NomorDarurat) (ret graphql.Marshaler) {
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return ec.fieldContext_NomorDarurat_layanan(ctx, field)
+		},
+		func(ctx context.Context) (any, error) {
+			return obj.Layanan, nil
+		},
+		nil,
+		func(ctx context.Context, selections ast.SelectionSet, v string) graphql.Marshaler {
+			return ec.marshalNString2string(ctx, selections, v)
+		},
+		true,
+		true,
+	)
+}
+func (ec *executionContext) fieldContext_NomorDarurat_layanan(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	return graphql.NewScalarFieldContext("NomorDarurat", field, false, false, errors.New("field of type String does not have child fields"))
+}
+
+func (ec *executionContext) _NomorDarurat_kategori(ctx context.Context, field graphql.CollectedField, obj *model.NomorDarurat) (ret graphql.Marshaler) {
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return ec.fieldContext_NomorDarurat_kategori(ctx, field)
+		},
+		func(ctx context.Context) (any, error) {
+			return obj.Kategori, nil
+		},
+		nil,
+		func(ctx context.Context, selections ast.SelectionSet, v string) graphql.Marshaler {
+			return ec.marshalNString2string(ctx, selections, v)
+		},
+		true,
+		true,
+	)
+}
+func (ec *executionContext) fieldContext_NomorDarurat_kategori(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	return graphql.NewScalarFieldContext("NomorDarurat", field, false, false, errors.New("field of type String does not have child fields"))
+}
+
+func (ec *executionContext) _PTN_nama(ctx context.Context, field graphql.CollectedField, obj *model.Ptn) (ret graphql.Marshaler) {
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return ec.fieldContext_PTN_nama(ctx, field)
+		},
+		func(ctx context.Context) (any, error) {
+			return obj.Nama, nil
+		},
+		nil,
+		func(ctx context.Context, selections ast.SelectionSet, v string) graphql.Marshaler {
+			return ec.marshalNString2string(ctx, selections, v)
+		},
+		true,
+		true,
+	)
+}
+func (ec *executionContext) fieldContext_PTN_nama(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	return graphql.NewScalarFieldContext("PTN", field, false, false, errors.New("field of type String does not have child fields"))
+}
+
+func (ec *executionContext) _PTN_singkatan(ctx context.Context, field graphql.CollectedField, obj *model.Ptn) (ret graphql.Marshaler) {
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return ec.fieldContext_PTN_singkatan(ctx, field)
+		},
+		func(ctx context.Context) (any, error) {
+			return obj.Singkatan, nil
+		},
+		nil,
+		func(ctx context.Context, selections ast.SelectionSet, v string) graphql.Marshaler {
+			return ec.marshalNString2string(ctx, selections, v)
+		},
+		true,
+		true,
+	)
+}
+func (ec *executionContext) fieldContext_PTN_singkatan(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	return graphql.NewScalarFieldContext("PTN", field, false, false, errors.New("field of type String does not have child fields"))
+}
+
+func (ec *executionContext) _PTN_kota(ctx context.Context, field graphql.CollectedField, obj *model.Ptn) (ret graphql.Marshaler) {
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return ec.fieldContext_PTN_kota(ctx, field)
+		},
+		func(ctx context.Context) (any, error) {
+			return obj.Kota, nil
+		},
+		nil,
+		func(ctx context.Context, selections ast.SelectionSet, v string) graphql.Marshaler {
+			return ec.marshalNString2string(ctx, selections, v)
+		},
+		true,
+		true,
+	)
+}
+func (ec *executionContext) fieldContext_PTN_kota(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	return graphql.NewScalarFieldContext("PTN", field, false, false, errors.New("field of type String does not have child fields"))
+}
+
+func (ec *executionContext) _PTN_provinsi(ctx context.Context, field graphql.CollectedField, obj *model.Ptn) (ret graphql.Marshaler) {
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return ec.fieldContext_PTN_provinsi(ctx, field)
+		},
+		func(ctx context.Context) (any, error) {
+			return obj.Provinsi, nil
+		},
+		nil,
+		func(ctx context.Context, selections ast.SelectionSet, v string) graphql.Marshaler {
+			return ec.marshalNString2string(ctx, selections, v)
+		},
+		true,
+		true,
+	)
+}
+func (ec *executionContext) fieldContext_PTN_provinsi(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	return graphql.NewScalarFieldContext("PTN", field, false, false, errors.New("field of type String does not have child fields"))
+}
+
+func (ec *executionContext) _PTN_akreditasi(ctx context.Context, field graphql.CollectedField, obj *model.Ptn) (ret graphql.Marshaler) {
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return ec.fieldContext_PTN_akreditasi(ctx, field)
+		},
+		func(ctx context.Context) (any, error) {
+			return obj.Akreditasi, nil
+		},
+		nil,
+		func(ctx context.Context, selections ast.SelectionSet, v string) graphql.Marshaler {
+			return ec.marshalNString2string(ctx, selections, v)
+		},
+		true,
+		true,
+	)
+}
+func (ec *executionContext) fieldContext_PTN_akreditasi(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	return graphql.NewScalarFieldContext("PTN", field, false, false, errors.New("field of type String does not have child fields"))
+}
+
+func (ec *executionContext) _PTN_jenis(ctx context.Context, field graphql.CollectedField, obj *model.Ptn) (ret graphql.Marshaler) {
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return ec.fieldContext_PTN_jenis(ctx, field)
+		},
+		func(ctx context.Context) (any, error) {
+			return obj.Jenis, nil
+		},
+		nil,
+		func(ctx context.Context, selections ast.SelectionSet, v string) graphql.Marshaler {
+			return ec.marshalNString2string(ctx, selections, v)
+		},
+		true,
+		true,
+	)
+}
+func (ec *executionContext) fieldContext_PTN_jenis(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	return graphql.NewScalarFieldContext("PTN", field, false, false, errors.New("field of type String does not have child fields"))
+}
+
 func (ec *executionContext) _PahlawanNasional_nama(ctx context.Context, field graphql.CollectedField, obj *model.PahlawanNasional) (ret graphql.Marshaler) {
 	return graphql.ResolveField(
 		ctx,
@@ -5247,6 +5983,121 @@ func (ec *executionContext) fieldContext_Prakiraan_arahAngin(_ context.Context, 
 	return graphql.NewScalarFieldContext("Prakiraan", field, false, false, errors.New("field of type String does not have child fields"))
 }
 
+func (ec *executionContext) _Presiden_urutan(ctx context.Context, field graphql.CollectedField, obj *model.Presiden) (ret graphql.Marshaler) {
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return ec.fieldContext_Presiden_urutan(ctx, field)
+		},
+		func(ctx context.Context) (any, error) {
+			return obj.Urutan, nil
+		},
+		nil,
+		func(ctx context.Context, selections ast.SelectionSet, v int) graphql.Marshaler {
+			return ec.marshalNInt2int(ctx, selections, v)
+		},
+		true,
+		true,
+	)
+}
+func (ec *executionContext) fieldContext_Presiden_urutan(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	return graphql.NewScalarFieldContext("Presiden", field, false, false, errors.New("field of type Int does not have child fields"))
+}
+
+func (ec *executionContext) _Presiden_nama(ctx context.Context, field graphql.CollectedField, obj *model.Presiden) (ret graphql.Marshaler) {
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return ec.fieldContext_Presiden_nama(ctx, field)
+		},
+		func(ctx context.Context) (any, error) {
+			return obj.Nama, nil
+		},
+		nil,
+		func(ctx context.Context, selections ast.SelectionSet, v string) graphql.Marshaler {
+			return ec.marshalNString2string(ctx, selections, v)
+		},
+		true,
+		true,
+	)
+}
+func (ec *executionContext) fieldContext_Presiden_nama(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	return graphql.NewScalarFieldContext("Presiden", field, false, false, errors.New("field of type String does not have child fields"))
+}
+
+func (ec *executionContext) _Presiden_wakilPresiden(ctx context.Context, field graphql.CollectedField, obj *model.Presiden) (ret graphql.Marshaler) {
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return ec.fieldContext_Presiden_wakilPresiden(ctx, field)
+		},
+		func(ctx context.Context) (any, error) {
+			return obj.WakilPresiden, nil
+		},
+		nil,
+		func(ctx context.Context, selections ast.SelectionSet, v string) graphql.Marshaler {
+			return ec.marshalNString2string(ctx, selections, v)
+		},
+		true,
+		true,
+	)
+}
+func (ec *executionContext) fieldContext_Presiden_wakilPresiden(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	return graphql.NewScalarFieldContext("Presiden", field, false, false, errors.New("field of type String does not have child fields"))
+}
+
+func (ec *executionContext) _Presiden_mulaiJabatan(ctx context.Context, field graphql.CollectedField, obj *model.Presiden) (ret graphql.Marshaler) {
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return ec.fieldContext_Presiden_mulaiJabatan(ctx, field)
+		},
+		func(ctx context.Context) (any, error) {
+			return obj.MulaiJabatan, nil
+		},
+		nil,
+		func(ctx context.Context, selections ast.SelectionSet, v int) graphql.Marshaler {
+			return ec.marshalNInt2int(ctx, selections, v)
+		},
+		true,
+		true,
+	)
+}
+func (ec *executionContext) fieldContext_Presiden_mulaiJabatan(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	return graphql.NewScalarFieldContext("Presiden", field, false, false, errors.New("field of type Int does not have child fields"))
+}
+
+func (ec *executionContext) _Presiden_akhirJabatan(ctx context.Context, field graphql.CollectedField, obj *model.Presiden) (ret graphql.Marshaler) {
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return ec.fieldContext_Presiden_akhirJabatan(ctx, field)
+		},
+		func(ctx context.Context) (any, error) {
+			return obj.AkhirJabatan, nil
+		},
+		nil,
+		func(ctx context.Context, selections ast.SelectionSet, v int) graphql.Marshaler {
+			return ec.marshalNInt2int(ctx, selections, v)
+		},
+		true,
+		true,
+	)
+}
+func (ec *executionContext) fieldContext_Presiden_akhirJabatan(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	return graphql.NewScalarFieldContext("Presiden", field, false, false, errors.New("field of type Int does not have child fields"))
+}
+
 func (ec *executionContext) _Provinsi_kode(ctx context.Context, field graphql.CollectedField, obj *domain.Provinsi) (ret graphql.Marshaler) {
 	return graphql.ResolveField(
 		ctx,
@@ -5452,6 +6303,82 @@ func (ec *executionContext) fieldContext_Query_iuranBPJS(_ context.Context, fiel
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
 			return ec.childFields_IuranBPJS(ctx, field)
 		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _Query_budayaDaerahList(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return ec.fieldContext_Query_budayaDaerahList(ctx, field)
+		},
+		func(ctx context.Context) (any, error) {
+			return ec.Resolvers.Query().BudayaDaerahList(ctx)
+		},
+		nil,
+		func(ctx context.Context, selections ast.SelectionSet, v []*model.BudayaDaerah) graphql.Marshaler {
+			return ec.marshalNBudayaDaerah2ᚕᚖgithubᚗcomᚋlisvindanuuᚋindonesiaqlᚋgraphᚋmodelᚐBudayaDaerahᚄ(ctx, selections, v)
+		},
+		true,
+		true,
+	)
+}
+func (ec *executionContext) fieldContext_Query_budayaDaerahList(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "Query",
+		Field:      field,
+		IsMethod:   true,
+		IsResolver: true,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return ec.childFields_BudayaDaerah(ctx, field)
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _Query_budayaDaerahCari(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return ec.fieldContext_Query_budayaDaerahCari(ctx, field)
+		},
+		func(ctx context.Context) (any, error) {
+			fc := graphql.GetFieldContext(ctx)
+			return ec.Resolvers.Query().BudayaDaerahCari(ctx, fc.Args["provinsi"].(string))
+		},
+		nil,
+		func(ctx context.Context, selections ast.SelectionSet, v []*model.BudayaDaerah) graphql.Marshaler {
+			return ec.marshalNBudayaDaerah2ᚕᚖgithubᚗcomᚋlisvindanuuᚋindonesiaqlᚋgraphᚋmodelᚐBudayaDaerahᚄ(ctx, selections, v)
+		},
+		true,
+		true,
+	)
+}
+func (ec *executionContext) fieldContext_Query_budayaDaerahCari(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "Query",
+		Field:      field,
+		IsMethod:   true,
+		IsResolver: true,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return ec.childFields_BudayaDaerah(ctx, field)
+		},
+	}
+	defer func() {
+		if r := recover(); r != nil {
+			err = ec.Recover(ctx, r)
+			ec.Error(ctx, err)
+		}
+	}()
+	ctx = graphql.WithFieldContext(ctx, fc)
+	if fc.Args, err = ec.field_Query_budayaDaerahCari_args(ctx, field.ArgumentMap(ec.Variables)); err != nil {
+		ec.Error(ctx, err)
+		return fc, err
 	}
 	return fc, nil
 }
@@ -6196,6 +7123,82 @@ func (ec *executionContext) fieldContext_Query_validasiNIK(ctx context.Context, 
 	return fc, nil
 }
 
+func (ec *executionContext) _Query_nomorDaruratList(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return ec.fieldContext_Query_nomorDaruratList(ctx, field)
+		},
+		func(ctx context.Context) (any, error) {
+			return ec.Resolvers.Query().NomorDaruratList(ctx)
+		},
+		nil,
+		func(ctx context.Context, selections ast.SelectionSet, v []*model.NomorDarurat) graphql.Marshaler {
+			return ec.marshalNNomorDarurat2ᚕᚖgithubᚗcomᚋlisvindanuuᚋindonesiaqlᚋgraphᚋmodelᚐNomorDaruratᚄ(ctx, selections, v)
+		},
+		true,
+		true,
+	)
+}
+func (ec *executionContext) fieldContext_Query_nomorDaruratList(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "Query",
+		Field:      field,
+		IsMethod:   true,
+		IsResolver: true,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return ec.childFields_NomorDarurat(ctx, field)
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _Query_nomorDaruratCari(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return ec.fieldContext_Query_nomorDaruratCari(ctx, field)
+		},
+		func(ctx context.Context) (any, error) {
+			fc := graphql.GetFieldContext(ctx)
+			return ec.Resolvers.Query().NomorDaruratCari(ctx, fc.Args["query"].(string))
+		},
+		nil,
+		func(ctx context.Context, selections ast.SelectionSet, v []*model.NomorDarurat) graphql.Marshaler {
+			return ec.marshalNNomorDarurat2ᚕᚖgithubᚗcomᚋlisvindanuuᚋindonesiaqlᚋgraphᚋmodelᚐNomorDaruratᚄ(ctx, selections, v)
+		},
+		true,
+		true,
+	)
+}
+func (ec *executionContext) fieldContext_Query_nomorDaruratCari(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "Query",
+		Field:      field,
+		IsMethod:   true,
+		IsResolver: true,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return ec.childFields_NomorDarurat(ctx, field)
+		},
+	}
+	defer func() {
+		if r := recover(); r != nil {
+			err = ec.Recover(ctx, r)
+			ec.Error(ctx, err)
+		}
+	}()
+	ctx = graphql.WithFieldContext(ctx, fc)
+	if fc.Args, err = ec.field_Query_nomorDaruratCari_args(ctx, field.ArgumentMap(ec.Variables)); err != nil {
+		ec.Error(ctx, err)
+		return fc, err
+	}
+	return fc, nil
+}
+
 func (ec *executionContext) _Query_pahlawanList(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
 	return graphql.ResolveField(
 		ctx,
@@ -6316,6 +7319,158 @@ func (ec *executionContext) fieldContext_Query_platNomor(ctx context.Context, fi
 	return fc, nil
 }
 
+func (ec *executionContext) _Query_presidenList(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return ec.fieldContext_Query_presidenList(ctx, field)
+		},
+		func(ctx context.Context) (any, error) {
+			return ec.Resolvers.Query().PresidenList(ctx)
+		},
+		nil,
+		func(ctx context.Context, selections ast.SelectionSet, v []*model.Presiden) graphql.Marshaler {
+			return ec.marshalNPresiden2ᚕᚖgithubᚗcomᚋlisvindanuuᚋindonesiaqlᚋgraphᚋmodelᚐPresidenᚄ(ctx, selections, v)
+		},
+		true,
+		true,
+	)
+}
+func (ec *executionContext) fieldContext_Query_presidenList(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "Query",
+		Field:      field,
+		IsMethod:   true,
+		IsResolver: true,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return ec.childFields_Presiden(ctx, field)
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _Query_presidenCari(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return ec.fieldContext_Query_presidenCari(ctx, field)
+		},
+		func(ctx context.Context) (any, error) {
+			fc := graphql.GetFieldContext(ctx)
+			return ec.Resolvers.Query().PresidenCari(ctx, fc.Args["nama"].(string))
+		},
+		nil,
+		func(ctx context.Context, selections ast.SelectionSet, v []*model.Presiden) graphql.Marshaler {
+			return ec.marshalNPresiden2ᚕᚖgithubᚗcomᚋlisvindanuuᚋindonesiaqlᚋgraphᚋmodelᚐPresidenᚄ(ctx, selections, v)
+		},
+		true,
+		true,
+	)
+}
+func (ec *executionContext) fieldContext_Query_presidenCari(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "Query",
+		Field:      field,
+		IsMethod:   true,
+		IsResolver: true,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return ec.childFields_Presiden(ctx, field)
+		},
+	}
+	defer func() {
+		if r := recover(); r != nil {
+			err = ec.Recover(ctx, r)
+			ec.Error(ctx, err)
+		}
+	}()
+	ctx = graphql.WithFieldContext(ctx, fc)
+	if fc.Args, err = ec.field_Query_presidenCari_args(ctx, field.ArgumentMap(ec.Variables)); err != nil {
+		ec.Error(ctx, err)
+		return fc, err
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _Query_ptnList(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return ec.fieldContext_Query_ptnList(ctx, field)
+		},
+		func(ctx context.Context) (any, error) {
+			return ec.Resolvers.Query().PtnList(ctx)
+		},
+		nil,
+		func(ctx context.Context, selections ast.SelectionSet, v []*model.Ptn) graphql.Marshaler {
+			return ec.marshalNPTN2ᚕᚖgithubᚗcomᚋlisvindanuuᚋindonesiaqlᚋgraphᚋmodelᚐPtnᚄ(ctx, selections, v)
+		},
+		true,
+		true,
+	)
+}
+func (ec *executionContext) fieldContext_Query_ptnList(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "Query",
+		Field:      field,
+		IsMethod:   true,
+		IsResolver: true,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return ec.childFields_PTN(ctx, field)
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _Query_ptnCari(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return ec.fieldContext_Query_ptnCari(ctx, field)
+		},
+		func(ctx context.Context) (any, error) {
+			fc := graphql.GetFieldContext(ctx)
+			return ec.Resolvers.Query().PtnCari(ctx, fc.Args["query"].(string))
+		},
+		nil,
+		func(ctx context.Context, selections ast.SelectionSet, v []*model.Ptn) graphql.Marshaler {
+			return ec.marshalNPTN2ᚕᚖgithubᚗcomᚋlisvindanuuᚋindonesiaqlᚋgraphᚋmodelᚐPtnᚄ(ctx, selections, v)
+		},
+		true,
+		true,
+	)
+}
+func (ec *executionContext) fieldContext_Query_ptnCari(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "Query",
+		Field:      field,
+		IsMethod:   true,
+		IsResolver: true,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return ec.childFields_PTN(ctx, field)
+		},
+	}
+	defer func() {
+		if r := recover(); r != nil {
+			err = ec.Recover(ctx, r)
+			ec.Error(ctx, err)
+		}
+	}()
+	ctx = graphql.WithFieldContext(ctx, fc)
+	if fc.Args, err = ec.field_Query_ptnCari_args(ctx, field.ArgumentMap(ec.Variables)); err != nil {
+		ec.Error(ctx, err)
+		return fc, err
+	}
+	return fc, nil
+}
+
 func (ec *executionContext) _Query_validasiRekening(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
 	return graphql.ResolveField(
 		ctx,
@@ -6354,6 +7509,82 @@ func (ec *executionContext) fieldContext_Query_validasiRekening(ctx context.Cont
 	}()
 	ctx = graphql.WithFieldContext(ctx, fc)
 	if fc.Args, err = ec.field_Query_validasiRekening_args(ctx, field.ArgumentMap(ec.Variables)); err != nil {
+		ec.Error(ctx, err)
+		return fc, err
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _Query_stasiunKeretaList(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return ec.fieldContext_Query_stasiunKeretaList(ctx, field)
+		},
+		func(ctx context.Context) (any, error) {
+			return ec.Resolvers.Query().StasiunKeretaList(ctx)
+		},
+		nil,
+		func(ctx context.Context, selections ast.SelectionSet, v []*model.StasiunKereta) graphql.Marshaler {
+			return ec.marshalNStasiunKereta2ᚕᚖgithubᚗcomᚋlisvindanuuᚋindonesiaqlᚋgraphᚋmodelᚐStasiunKeretaᚄ(ctx, selections, v)
+		},
+		true,
+		true,
+	)
+}
+func (ec *executionContext) fieldContext_Query_stasiunKeretaList(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "Query",
+		Field:      field,
+		IsMethod:   true,
+		IsResolver: true,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return ec.childFields_StasiunKereta(ctx, field)
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _Query_stasiunKeretaCari(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return ec.fieldContext_Query_stasiunKeretaCari(ctx, field)
+		},
+		func(ctx context.Context) (any, error) {
+			fc := graphql.GetFieldContext(ctx)
+			return ec.Resolvers.Query().StasiunKeretaCari(ctx, fc.Args["nama"].(string))
+		},
+		nil,
+		func(ctx context.Context, selections ast.SelectionSet, v []*model.StasiunKereta) graphql.Marshaler {
+			return ec.marshalNStasiunKereta2ᚕᚖgithubᚗcomᚋlisvindanuuᚋindonesiaqlᚋgraphᚋmodelᚐStasiunKeretaᚄ(ctx, selections, v)
+		},
+		true,
+		true,
+	)
+}
+func (ec *executionContext) fieldContext_Query_stasiunKeretaCari(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "Query",
+		Field:      field,
+		IsMethod:   true,
+		IsResolver: true,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return ec.childFields_StasiunKereta(ctx, field)
+		},
+	}
+	defer func() {
+		if r := recover(); r != nil {
+			err = ec.Recover(ctx, r)
+			ec.Error(ctx, err)
+		}
+	}()
+	ctx = graphql.WithFieldContext(ctx, fc)
+	if fc.Args, err = ec.field_Query_stasiunKeretaCari_args(ctx, field.ArgumentMap(ec.Variables)); err != nil {
 		ec.Error(ctx, err)
 		return fc, err
 	}
@@ -7004,6 +8235,121 @@ func (ec *executionContext) _SahamResult_waktu(ctx context.Context, field graphq
 }
 func (ec *executionContext) fieldContext_SahamResult_waktu(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	return graphql.NewScalarFieldContext("SahamResult", field, false, false, errors.New("field of type String does not have child fields"))
+}
+
+func (ec *executionContext) _StasiunKereta_nama(ctx context.Context, field graphql.CollectedField, obj *model.StasiunKereta) (ret graphql.Marshaler) {
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return ec.fieldContext_StasiunKereta_nama(ctx, field)
+		},
+		func(ctx context.Context) (any, error) {
+			return obj.Nama, nil
+		},
+		nil,
+		func(ctx context.Context, selections ast.SelectionSet, v string) graphql.Marshaler {
+			return ec.marshalNString2string(ctx, selections, v)
+		},
+		true,
+		true,
+	)
+}
+func (ec *executionContext) fieldContext_StasiunKereta_nama(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	return graphql.NewScalarFieldContext("StasiunKereta", field, false, false, errors.New("field of type String does not have child fields"))
+}
+
+func (ec *executionContext) _StasiunKereta_kode(ctx context.Context, field graphql.CollectedField, obj *model.StasiunKereta) (ret graphql.Marshaler) {
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return ec.fieldContext_StasiunKereta_kode(ctx, field)
+		},
+		func(ctx context.Context) (any, error) {
+			return obj.Kode, nil
+		},
+		nil,
+		func(ctx context.Context, selections ast.SelectionSet, v string) graphql.Marshaler {
+			return ec.marshalNString2string(ctx, selections, v)
+		},
+		true,
+		true,
+	)
+}
+func (ec *executionContext) fieldContext_StasiunKereta_kode(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	return graphql.NewScalarFieldContext("StasiunKereta", field, false, false, errors.New("field of type String does not have child fields"))
+}
+
+func (ec *executionContext) _StasiunKereta_jalur(ctx context.Context, field graphql.CollectedField, obj *model.StasiunKereta) (ret graphql.Marshaler) {
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return ec.fieldContext_StasiunKereta_jalur(ctx, field)
+		},
+		func(ctx context.Context) (any, error) {
+			return obj.Jalur, nil
+		},
+		nil,
+		func(ctx context.Context, selections ast.SelectionSet, v string) graphql.Marshaler {
+			return ec.marshalNString2string(ctx, selections, v)
+		},
+		true,
+		true,
+	)
+}
+func (ec *executionContext) fieldContext_StasiunKereta_jalur(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	return graphql.NewScalarFieldContext("StasiunKereta", field, false, false, errors.New("field of type String does not have child fields"))
+}
+
+func (ec *executionContext) _StasiunKereta_tipe(ctx context.Context, field graphql.CollectedField, obj *model.StasiunKereta) (ret graphql.Marshaler) {
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return ec.fieldContext_StasiunKereta_tipe(ctx, field)
+		},
+		func(ctx context.Context) (any, error) {
+			return obj.Tipe, nil
+		},
+		nil,
+		func(ctx context.Context, selections ast.SelectionSet, v string) graphql.Marshaler {
+			return ec.marshalNString2string(ctx, selections, v)
+		},
+		true,
+		true,
+	)
+}
+func (ec *executionContext) fieldContext_StasiunKereta_tipe(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	return graphql.NewScalarFieldContext("StasiunKereta", field, false, false, errors.New("field of type String does not have child fields"))
+}
+
+func (ec *executionContext) _StasiunKereta_kota(ctx context.Context, field graphql.CollectedField, obj *model.StasiunKereta) (ret graphql.Marshaler) {
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return ec.fieldContext_StasiunKereta_kota(ctx, field)
+		},
+		func(ctx context.Context) (any, error) {
+			return obj.Kota, nil
+		},
+		nil,
+		func(ctx context.Context, selections ast.SelectionSet, v string) graphql.Marshaler {
+			return ec.marshalNString2string(ctx, selections, v)
+		},
+		true,
+		true,
+	)
+}
+func (ec *executionContext) fieldContext_StasiunKereta_kota(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	return graphql.NewScalarFieldContext("StasiunKereta", field, false, false, errors.New("field of type String does not have child fields"))
 }
 
 func (ec *executionContext) _TerbilangResult_angka(ctx context.Context, field graphql.CollectedField, obj *model.TerbilangResult) (ret graphql.Marshaler) {
@@ -8679,6 +10025,60 @@ func (ec *executionContext) _Bandara(ctx context.Context, sel ast.SelectionSet, 
 	return out
 }
 
+var budayaDaerahImplementors = []string{"BudayaDaerah"}
+
+func (ec *executionContext) _BudayaDaerah(ctx context.Context, sel ast.SelectionSet, obj *model.BudayaDaerah) graphql.Marshaler {
+	fields := graphql.CollectFields(ec.OperationContext, sel, budayaDaerahImplementors)
+
+	out := graphql.NewFieldSet(fields)
+	deferred := make(map[string]*graphql.FieldSet)
+	for i, field := range fields {
+		switch field.Name {
+		case "__typename":
+			out.Values[i] = graphql.MarshalString("BudayaDaerah")
+		case "provinsi":
+			out.Values[i] = ec._BudayaDaerah_provinsi(ctx, field, obj)
+			if out.Values[i] == graphql.Null {
+				out.Invalids++
+			}
+		case "rumahAdat":
+			out.Values[i] = ec._BudayaDaerah_rumahAdat(ctx, field, obj)
+			if out.Values[i] == graphql.Null {
+				out.Invalids++
+			}
+		case "pakaianAdat":
+			out.Values[i] = ec._BudayaDaerah_pakaianAdat(ctx, field, obj)
+			if out.Values[i] == graphql.Null {
+				out.Invalids++
+			}
+		case "tariDaerah":
+			out.Values[i] = ec._BudayaDaerah_tariDaerah(ctx, field, obj)
+			if out.Values[i] == graphql.Null {
+				out.Invalids++
+			}
+		default:
+			panic("unknown field " + strconv.Quote(field.Name))
+		}
+	}
+	out.Dispatch(ctx)
+	if out.Invalids > 0 {
+		return graphql.Null
+	}
+
+	atomic.AddInt32(&ec.Deferred, int32(min(len(deferred), math.MaxInt32)))
+
+	for label, dfs := range deferred {
+		ec.ProcessDeferredGroup(graphql.DeferredGroup{
+			Label:    label,
+			Path:     graphql.GetPath(ctx),
+			FieldSet: dfs,
+			Context:  ctx,
+		})
+	}
+
+	return out
+}
+
 var cuacaResultImplementors = []string{"CuacaResult"}
 
 func (ec *executionContext) _CuacaResult(ctx context.Context, sel ast.SelectionSet, obj *model.CuacaResult) graphql.Marshaler {
@@ -9813,6 +11213,119 @@ func (ec *executionContext) _NIKResult(ctx context.Context, sel ast.SelectionSet
 	return out
 }
 
+var nomorDaruratImplementors = []string{"NomorDarurat"}
+
+func (ec *executionContext) _NomorDarurat(ctx context.Context, sel ast.SelectionSet, obj *model.NomorDarurat) graphql.Marshaler {
+	fields := graphql.CollectFields(ec.OperationContext, sel, nomorDaruratImplementors)
+
+	out := graphql.NewFieldSet(fields)
+	deferred := make(map[string]*graphql.FieldSet)
+	for i, field := range fields {
+		switch field.Name {
+		case "__typename":
+			out.Values[i] = graphql.MarshalString("NomorDarurat")
+		case "nomor":
+			out.Values[i] = ec._NomorDarurat_nomor(ctx, field, obj)
+			if out.Values[i] == graphql.Null {
+				out.Invalids++
+			}
+		case "layanan":
+			out.Values[i] = ec._NomorDarurat_layanan(ctx, field, obj)
+			if out.Values[i] == graphql.Null {
+				out.Invalids++
+			}
+		case "kategori":
+			out.Values[i] = ec._NomorDarurat_kategori(ctx, field, obj)
+			if out.Values[i] == graphql.Null {
+				out.Invalids++
+			}
+		default:
+			panic("unknown field " + strconv.Quote(field.Name))
+		}
+	}
+	out.Dispatch(ctx)
+	if out.Invalids > 0 {
+		return graphql.Null
+	}
+
+	atomic.AddInt32(&ec.Deferred, int32(min(len(deferred), math.MaxInt32)))
+
+	for label, dfs := range deferred {
+		ec.ProcessDeferredGroup(graphql.DeferredGroup{
+			Label:    label,
+			Path:     graphql.GetPath(ctx),
+			FieldSet: dfs,
+			Context:  ctx,
+		})
+	}
+
+	return out
+}
+
+var pTNImplementors = []string{"PTN"}
+
+func (ec *executionContext) _PTN(ctx context.Context, sel ast.SelectionSet, obj *model.Ptn) graphql.Marshaler {
+	fields := graphql.CollectFields(ec.OperationContext, sel, pTNImplementors)
+
+	out := graphql.NewFieldSet(fields)
+	deferred := make(map[string]*graphql.FieldSet)
+	for i, field := range fields {
+		switch field.Name {
+		case "__typename":
+			out.Values[i] = graphql.MarshalString("PTN")
+		case "nama":
+			out.Values[i] = ec._PTN_nama(ctx, field, obj)
+			if out.Values[i] == graphql.Null {
+				out.Invalids++
+			}
+		case "singkatan":
+			out.Values[i] = ec._PTN_singkatan(ctx, field, obj)
+			if out.Values[i] == graphql.Null {
+				out.Invalids++
+			}
+		case "kota":
+			out.Values[i] = ec._PTN_kota(ctx, field, obj)
+			if out.Values[i] == graphql.Null {
+				out.Invalids++
+			}
+		case "provinsi":
+			out.Values[i] = ec._PTN_provinsi(ctx, field, obj)
+			if out.Values[i] == graphql.Null {
+				out.Invalids++
+			}
+		case "akreditasi":
+			out.Values[i] = ec._PTN_akreditasi(ctx, field, obj)
+			if out.Values[i] == graphql.Null {
+				out.Invalids++
+			}
+		case "jenis":
+			out.Values[i] = ec._PTN_jenis(ctx, field, obj)
+			if out.Values[i] == graphql.Null {
+				out.Invalids++
+			}
+		default:
+			panic("unknown field " + strconv.Quote(field.Name))
+		}
+	}
+	out.Dispatch(ctx)
+	if out.Invalids > 0 {
+		return graphql.Null
+	}
+
+	atomic.AddInt32(&ec.Deferred, int32(min(len(deferred), math.MaxInt32)))
+
+	for label, dfs := range deferred {
+		ec.ProcessDeferredGroup(graphql.DeferredGroup{
+			Label:    label,
+			Path:     graphql.GetPath(ctx),
+			FieldSet: dfs,
+			Context:  ctx,
+		})
+	}
+
+	return out
+}
+
 var pahlawanNasionalImplementors = []string{"PahlawanNasional"}
 
 func (ec *executionContext) _PahlawanNasional(ctx context.Context, sel ast.SelectionSet, obj *model.PahlawanNasional) graphql.Marshaler {
@@ -9964,6 +11477,65 @@ func (ec *executionContext) _Prakiraan(ctx context.Context, sel ast.SelectionSet
 			}
 		case "arahAngin":
 			out.Values[i] = ec._Prakiraan_arahAngin(ctx, field, obj)
+			if out.Values[i] == graphql.Null {
+				out.Invalids++
+			}
+		default:
+			panic("unknown field " + strconv.Quote(field.Name))
+		}
+	}
+	out.Dispatch(ctx)
+	if out.Invalids > 0 {
+		return graphql.Null
+	}
+
+	atomic.AddInt32(&ec.Deferred, int32(min(len(deferred), math.MaxInt32)))
+
+	for label, dfs := range deferred {
+		ec.ProcessDeferredGroup(graphql.DeferredGroup{
+			Label:    label,
+			Path:     graphql.GetPath(ctx),
+			FieldSet: dfs,
+			Context:  ctx,
+		})
+	}
+
+	return out
+}
+
+var presidenImplementors = []string{"Presiden"}
+
+func (ec *executionContext) _Presiden(ctx context.Context, sel ast.SelectionSet, obj *model.Presiden) graphql.Marshaler {
+	fields := graphql.CollectFields(ec.OperationContext, sel, presidenImplementors)
+
+	out := graphql.NewFieldSet(fields)
+	deferred := make(map[string]*graphql.FieldSet)
+	for i, field := range fields {
+		switch field.Name {
+		case "__typename":
+			out.Values[i] = graphql.MarshalString("Presiden")
+		case "urutan":
+			out.Values[i] = ec._Presiden_urutan(ctx, field, obj)
+			if out.Values[i] == graphql.Null {
+				out.Invalids++
+			}
+		case "nama":
+			out.Values[i] = ec._Presiden_nama(ctx, field, obj)
+			if out.Values[i] == graphql.Null {
+				out.Invalids++
+			}
+		case "wakilPresiden":
+			out.Values[i] = ec._Presiden_wakilPresiden(ctx, field, obj)
+			if out.Values[i] == graphql.Null {
+				out.Invalids++
+			}
+		case "mulaiJabatan":
+			out.Values[i] = ec._Presiden_mulaiJabatan(ctx, field, obj)
+			if out.Values[i] == graphql.Null {
+				out.Invalids++
+			}
+		case "akhirJabatan":
+			out.Values[i] = ec._Presiden_akhirJabatan(ctx, field, obj)
 			if out.Values[i] == graphql.Null {
 				out.Invalids++
 			}
@@ -10162,6 +11734,50 @@ func (ec *executionContext) _Query(ctx context.Context, sel ast.SelectionSet) gr
 					}
 				}()
 				res = ec._Query_iuranBPJS(ctx, field)
+				if res == graphql.Null {
+					atomic.AddUint32(&fs.Invalids, 1)
+				}
+				return res
+			}
+
+			rrm := func(ctx context.Context) graphql.Marshaler {
+				return ec.OperationContext.RootResolverMiddleware(ctx,
+					func(ctx context.Context) graphql.Marshaler { return innerFunc(ctx, out) })
+			}
+
+			out.Concurrently(i, func(ctx context.Context) graphql.Marshaler { return rrm(innerCtx) })
+		case "budayaDaerahList":
+			field := field
+
+			innerFunc := func(ctx context.Context, fs *graphql.FieldSet) (res graphql.Marshaler) {
+				defer func() {
+					if r := recover(); r != nil {
+						ec.Error(ctx, ec.Recover(ctx, r))
+					}
+				}()
+				res = ec._Query_budayaDaerahList(ctx, field)
+				if res == graphql.Null {
+					atomic.AddUint32(&fs.Invalids, 1)
+				}
+				return res
+			}
+
+			rrm := func(ctx context.Context) graphql.Marshaler {
+				return ec.OperationContext.RootResolverMiddleware(ctx,
+					func(ctx context.Context) graphql.Marshaler { return innerFunc(ctx, out) })
+			}
+
+			out.Concurrently(i, func(ctx context.Context) graphql.Marshaler { return rrm(innerCtx) })
+		case "budayaDaerahCari":
+			field := field
+
+			innerFunc := func(ctx context.Context, fs *graphql.FieldSet) (res graphql.Marshaler) {
+				defer func() {
+					if r := recover(); r != nil {
+						ec.Error(ctx, ec.Recover(ctx, r))
+					}
+				}()
+				res = ec._Query_budayaDaerahCari(ctx, field)
 				if res == graphql.Null {
 					atomic.AddUint32(&fs.Invalids, 1)
 				}
@@ -10577,6 +12193,50 @@ func (ec *executionContext) _Query(ctx context.Context, sel ast.SelectionSet) gr
 			}
 
 			out.Concurrently(i, func(ctx context.Context) graphql.Marshaler { return rrm(innerCtx) })
+		case "nomorDaruratList":
+			field := field
+
+			innerFunc := func(ctx context.Context, fs *graphql.FieldSet) (res graphql.Marshaler) {
+				defer func() {
+					if r := recover(); r != nil {
+						ec.Error(ctx, ec.Recover(ctx, r))
+					}
+				}()
+				res = ec._Query_nomorDaruratList(ctx, field)
+				if res == graphql.Null {
+					atomic.AddUint32(&fs.Invalids, 1)
+				}
+				return res
+			}
+
+			rrm := func(ctx context.Context) graphql.Marshaler {
+				return ec.OperationContext.RootResolverMiddleware(ctx,
+					func(ctx context.Context) graphql.Marshaler { return innerFunc(ctx, out) })
+			}
+
+			out.Concurrently(i, func(ctx context.Context) graphql.Marshaler { return rrm(innerCtx) })
+		case "nomorDaruratCari":
+			field := field
+
+			innerFunc := func(ctx context.Context, fs *graphql.FieldSet) (res graphql.Marshaler) {
+				defer func() {
+					if r := recover(); r != nil {
+						ec.Error(ctx, ec.Recover(ctx, r))
+					}
+				}()
+				res = ec._Query_nomorDaruratCari(ctx, field)
+				if res == graphql.Null {
+					atomic.AddUint32(&fs.Invalids, 1)
+				}
+				return res
+			}
+
+			rrm := func(ctx context.Context) graphql.Marshaler {
+				return ec.OperationContext.RootResolverMiddleware(ctx,
+					func(ctx context.Context) graphql.Marshaler { return innerFunc(ctx, out) })
+			}
+
+			out.Concurrently(i, func(ctx context.Context) graphql.Marshaler { return rrm(innerCtx) })
 		case "pahlawanList":
 			field := field
 
@@ -10640,6 +12300,94 @@ func (ec *executionContext) _Query(ctx context.Context, sel ast.SelectionSet) gr
 			}
 
 			out.Concurrently(i, func(ctx context.Context) graphql.Marshaler { return rrm(innerCtx) })
+		case "presidenList":
+			field := field
+
+			innerFunc := func(ctx context.Context, fs *graphql.FieldSet) (res graphql.Marshaler) {
+				defer func() {
+					if r := recover(); r != nil {
+						ec.Error(ctx, ec.Recover(ctx, r))
+					}
+				}()
+				res = ec._Query_presidenList(ctx, field)
+				if res == graphql.Null {
+					atomic.AddUint32(&fs.Invalids, 1)
+				}
+				return res
+			}
+
+			rrm := func(ctx context.Context) graphql.Marshaler {
+				return ec.OperationContext.RootResolverMiddleware(ctx,
+					func(ctx context.Context) graphql.Marshaler { return innerFunc(ctx, out) })
+			}
+
+			out.Concurrently(i, func(ctx context.Context) graphql.Marshaler { return rrm(innerCtx) })
+		case "presidenCari":
+			field := field
+
+			innerFunc := func(ctx context.Context, fs *graphql.FieldSet) (res graphql.Marshaler) {
+				defer func() {
+					if r := recover(); r != nil {
+						ec.Error(ctx, ec.Recover(ctx, r))
+					}
+				}()
+				res = ec._Query_presidenCari(ctx, field)
+				if res == graphql.Null {
+					atomic.AddUint32(&fs.Invalids, 1)
+				}
+				return res
+			}
+
+			rrm := func(ctx context.Context) graphql.Marshaler {
+				return ec.OperationContext.RootResolverMiddleware(ctx,
+					func(ctx context.Context) graphql.Marshaler { return innerFunc(ctx, out) })
+			}
+
+			out.Concurrently(i, func(ctx context.Context) graphql.Marshaler { return rrm(innerCtx) })
+		case "ptnList":
+			field := field
+
+			innerFunc := func(ctx context.Context, fs *graphql.FieldSet) (res graphql.Marshaler) {
+				defer func() {
+					if r := recover(); r != nil {
+						ec.Error(ctx, ec.Recover(ctx, r))
+					}
+				}()
+				res = ec._Query_ptnList(ctx, field)
+				if res == graphql.Null {
+					atomic.AddUint32(&fs.Invalids, 1)
+				}
+				return res
+			}
+
+			rrm := func(ctx context.Context) graphql.Marshaler {
+				return ec.OperationContext.RootResolverMiddleware(ctx,
+					func(ctx context.Context) graphql.Marshaler { return innerFunc(ctx, out) })
+			}
+
+			out.Concurrently(i, func(ctx context.Context) graphql.Marshaler { return rrm(innerCtx) })
+		case "ptnCari":
+			field := field
+
+			innerFunc := func(ctx context.Context, fs *graphql.FieldSet) (res graphql.Marshaler) {
+				defer func() {
+					if r := recover(); r != nil {
+						ec.Error(ctx, ec.Recover(ctx, r))
+					}
+				}()
+				res = ec._Query_ptnCari(ctx, field)
+				if res == graphql.Null {
+					atomic.AddUint32(&fs.Invalids, 1)
+				}
+				return res
+			}
+
+			rrm := func(ctx context.Context) graphql.Marshaler {
+				return ec.OperationContext.RootResolverMiddleware(ctx,
+					func(ctx context.Context) graphql.Marshaler { return innerFunc(ctx, out) })
+			}
+
+			out.Concurrently(i, func(ctx context.Context) graphql.Marshaler { return rrm(innerCtx) })
 		case "validasiRekening":
 			field := field
 
@@ -10650,6 +12398,50 @@ func (ec *executionContext) _Query(ctx context.Context, sel ast.SelectionSet) gr
 					}
 				}()
 				res = ec._Query_validasiRekening(ctx, field)
+				if res == graphql.Null {
+					atomic.AddUint32(&fs.Invalids, 1)
+				}
+				return res
+			}
+
+			rrm := func(ctx context.Context) graphql.Marshaler {
+				return ec.OperationContext.RootResolverMiddleware(ctx,
+					func(ctx context.Context) graphql.Marshaler { return innerFunc(ctx, out) })
+			}
+
+			out.Concurrently(i, func(ctx context.Context) graphql.Marshaler { return rrm(innerCtx) })
+		case "stasiunKeretaList":
+			field := field
+
+			innerFunc := func(ctx context.Context, fs *graphql.FieldSet) (res graphql.Marshaler) {
+				defer func() {
+					if r := recover(); r != nil {
+						ec.Error(ctx, ec.Recover(ctx, r))
+					}
+				}()
+				res = ec._Query_stasiunKeretaList(ctx, field)
+				if res == graphql.Null {
+					atomic.AddUint32(&fs.Invalids, 1)
+				}
+				return res
+			}
+
+			rrm := func(ctx context.Context) graphql.Marshaler {
+				return ec.OperationContext.RootResolverMiddleware(ctx,
+					func(ctx context.Context) graphql.Marshaler { return innerFunc(ctx, out) })
+			}
+
+			out.Concurrently(i, func(ctx context.Context) graphql.Marshaler { return rrm(innerCtx) })
+		case "stasiunKeretaCari":
+			field := field
+
+			innerFunc := func(ctx context.Context, fs *graphql.FieldSet) (res graphql.Marshaler) {
+				defer func() {
+					if r := recover(); r != nil {
+						ec.Error(ctx, ec.Recover(ctx, r))
+					}
+				}()
+				res = ec._Query_stasiunKeretaCari(ctx, field)
 				if res == graphql.Null {
 					atomic.AddUint32(&fs.Invalids, 1)
 				}
@@ -10915,6 +12707,65 @@ func (ec *executionContext) _SahamResult(ctx context.Context, sel ast.SelectionS
 			}
 		case "waktu":
 			out.Values[i] = ec._SahamResult_waktu(ctx, field, obj)
+			if out.Values[i] == graphql.Null {
+				out.Invalids++
+			}
+		default:
+			panic("unknown field " + strconv.Quote(field.Name))
+		}
+	}
+	out.Dispatch(ctx)
+	if out.Invalids > 0 {
+		return graphql.Null
+	}
+
+	atomic.AddInt32(&ec.Deferred, int32(min(len(deferred), math.MaxInt32)))
+
+	for label, dfs := range deferred {
+		ec.ProcessDeferredGroup(graphql.DeferredGroup{
+			Label:    label,
+			Path:     graphql.GetPath(ctx),
+			FieldSet: dfs,
+			Context:  ctx,
+		})
+	}
+
+	return out
+}
+
+var stasiunKeretaImplementors = []string{"StasiunKereta"}
+
+func (ec *executionContext) _StasiunKereta(ctx context.Context, sel ast.SelectionSet, obj *model.StasiunKereta) graphql.Marshaler {
+	fields := graphql.CollectFields(ec.OperationContext, sel, stasiunKeretaImplementors)
+
+	out := graphql.NewFieldSet(fields)
+	deferred := make(map[string]*graphql.FieldSet)
+	for i, field := range fields {
+		switch field.Name {
+		case "__typename":
+			out.Values[i] = graphql.MarshalString("StasiunKereta")
+		case "nama":
+			out.Values[i] = ec._StasiunKereta_nama(ctx, field, obj)
+			if out.Values[i] == graphql.Null {
+				out.Invalids++
+			}
+		case "kode":
+			out.Values[i] = ec._StasiunKereta_kode(ctx, field, obj)
+			if out.Values[i] == graphql.Null {
+				out.Invalids++
+			}
+		case "jalur":
+			out.Values[i] = ec._StasiunKereta_jalur(ctx, field, obj)
+			if out.Values[i] == graphql.Null {
+				out.Invalids++
+			}
+		case "tipe":
+			out.Values[i] = ec._StasiunKereta_tipe(ctx, field, obj)
+			if out.Values[i] == graphql.Null {
+				out.Invalids++
+			}
+		case "kota":
+			out.Values[i] = ec._StasiunKereta_kota(ctx, field, obj)
 			if out.Values[i] == graphql.Null {
 				out.Invalids++
 			}
@@ -11602,6 +13453,32 @@ func (ec *executionContext) marshalNBoolean2bool(ctx context.Context, sel ast.Se
 	return res
 }
 
+func (ec *executionContext) marshalNBudayaDaerah2ᚕᚖgithubᚗcomᚋlisvindanuuᚋindonesiaqlᚋgraphᚋmodelᚐBudayaDaerahᚄ(ctx context.Context, sel ast.SelectionSet, v []*model.BudayaDaerah) graphql.Marshaler {
+	ret := graphql.MarshalSliceConcurrently(ctx, len(v), 0, false, func(ctx context.Context, i int) graphql.Marshaler {
+		fc := graphql.GetFieldContext(ctx)
+		fc.Result = &v[i]
+		return ec.marshalNBudayaDaerah2ᚖgithubᚗcomᚋlisvindanuuᚋindonesiaqlᚋgraphᚋmodelᚐBudayaDaerah(ctx, sel, v[i])
+	})
+
+	for _, e := range ret {
+		if e == graphql.Null {
+			return graphql.Null
+		}
+	}
+
+	return ret
+}
+
+func (ec *executionContext) marshalNBudayaDaerah2ᚖgithubᚗcomᚋlisvindanuuᚋindonesiaqlᚋgraphᚋmodelᚐBudayaDaerah(ctx context.Context, sel ast.SelectionSet, v *model.BudayaDaerah) graphql.Marshaler {
+	if v == nil {
+		if !graphql.HasFieldError(ctx, graphql.GetFieldContext(ctx)) {
+			graphql.AddErrorf(ctx, "the requested element is null which the schema does not allow")
+		}
+		return graphql.Null
+	}
+	return ec._BudayaDaerah(ctx, sel, v)
+}
+
 func (ec *executionContext) marshalNCuacaResult2githubᚗcomᚋlisvindanuuᚋindonesiaqlᚋgraphᚋmodelᚐCuacaResult(ctx context.Context, sel ast.SelectionSet, v model.CuacaResult) graphql.Marshaler {
 	return ec._CuacaResult(ctx, sel, &v)
 }
@@ -12028,6 +13905,58 @@ func (ec *executionContext) marshalNNIKResult2ᚖgithubᚗcomᚋlisvindanuuᚋin
 	return ec._NIKResult(ctx, sel, v)
 }
 
+func (ec *executionContext) marshalNNomorDarurat2ᚕᚖgithubᚗcomᚋlisvindanuuᚋindonesiaqlᚋgraphᚋmodelᚐNomorDaruratᚄ(ctx context.Context, sel ast.SelectionSet, v []*model.NomorDarurat) graphql.Marshaler {
+	ret := graphql.MarshalSliceConcurrently(ctx, len(v), 0, false, func(ctx context.Context, i int) graphql.Marshaler {
+		fc := graphql.GetFieldContext(ctx)
+		fc.Result = &v[i]
+		return ec.marshalNNomorDarurat2ᚖgithubᚗcomᚋlisvindanuuᚋindonesiaqlᚋgraphᚋmodelᚐNomorDarurat(ctx, sel, v[i])
+	})
+
+	for _, e := range ret {
+		if e == graphql.Null {
+			return graphql.Null
+		}
+	}
+
+	return ret
+}
+
+func (ec *executionContext) marshalNNomorDarurat2ᚖgithubᚗcomᚋlisvindanuuᚋindonesiaqlᚋgraphᚋmodelᚐNomorDarurat(ctx context.Context, sel ast.SelectionSet, v *model.NomorDarurat) graphql.Marshaler {
+	if v == nil {
+		if !graphql.HasFieldError(ctx, graphql.GetFieldContext(ctx)) {
+			graphql.AddErrorf(ctx, "the requested element is null which the schema does not allow")
+		}
+		return graphql.Null
+	}
+	return ec._NomorDarurat(ctx, sel, v)
+}
+
+func (ec *executionContext) marshalNPTN2ᚕᚖgithubᚗcomᚋlisvindanuuᚋindonesiaqlᚋgraphᚋmodelᚐPtnᚄ(ctx context.Context, sel ast.SelectionSet, v []*model.Ptn) graphql.Marshaler {
+	ret := graphql.MarshalSliceConcurrently(ctx, len(v), 0, false, func(ctx context.Context, i int) graphql.Marshaler {
+		fc := graphql.GetFieldContext(ctx)
+		fc.Result = &v[i]
+		return ec.marshalNPTN2ᚖgithubᚗcomᚋlisvindanuuᚋindonesiaqlᚋgraphᚋmodelᚐPtn(ctx, sel, v[i])
+	})
+
+	for _, e := range ret {
+		if e == graphql.Null {
+			return graphql.Null
+		}
+	}
+
+	return ret
+}
+
+func (ec *executionContext) marshalNPTN2ᚖgithubᚗcomᚋlisvindanuuᚋindonesiaqlᚋgraphᚋmodelᚐPtn(ctx context.Context, sel ast.SelectionSet, v *model.Ptn) graphql.Marshaler {
+	if v == nil {
+		if !graphql.HasFieldError(ctx, graphql.GetFieldContext(ctx)) {
+			graphql.AddErrorf(ctx, "the requested element is null which the schema does not allow")
+		}
+		return graphql.Null
+	}
+	return ec._PTN(ctx, sel, v)
+}
+
 func (ec *executionContext) marshalNPahlawanNasional2ᚕᚖgithubᚗcomᚋlisvindanuuᚋindonesiaqlᚋgraphᚋmodelᚐPahlawanNasionalᚄ(ctx context.Context, sel ast.SelectionSet, v []*model.PahlawanNasional) graphql.Marshaler {
 	ret := graphql.MarshalSliceConcurrently(ctx, len(v), 0, false, func(ctx context.Context, i int) graphql.Marshaler {
 		fc := graphql.GetFieldContext(ctx)
@@ -12080,6 +14009,32 @@ func (ec *executionContext) marshalNPrakiraan2ᚖgithubᚗcomᚋlisvindanuuᚋin
 	return ec._Prakiraan(ctx, sel, v)
 }
 
+func (ec *executionContext) marshalNPresiden2ᚕᚖgithubᚗcomᚋlisvindanuuᚋindonesiaqlᚋgraphᚋmodelᚐPresidenᚄ(ctx context.Context, sel ast.SelectionSet, v []*model.Presiden) graphql.Marshaler {
+	ret := graphql.MarshalSliceConcurrently(ctx, len(v), 0, false, func(ctx context.Context, i int) graphql.Marshaler {
+		fc := graphql.GetFieldContext(ctx)
+		fc.Result = &v[i]
+		return ec.marshalNPresiden2ᚖgithubᚗcomᚋlisvindanuuᚋindonesiaqlᚋgraphᚋmodelᚐPresiden(ctx, sel, v[i])
+	})
+
+	for _, e := range ret {
+		if e == graphql.Null {
+			return graphql.Null
+		}
+	}
+
+	return ret
+}
+
+func (ec *executionContext) marshalNPresiden2ᚖgithubᚗcomᚋlisvindanuuᚋindonesiaqlᚋgraphᚋmodelᚐPresiden(ctx context.Context, sel ast.SelectionSet, v *model.Presiden) graphql.Marshaler {
+	if v == nil {
+		if !graphql.HasFieldError(ctx, graphql.GetFieldContext(ctx)) {
+			graphql.AddErrorf(ctx, "the requested element is null which the schema does not allow")
+		}
+		return graphql.Null
+	}
+	return ec._Presiden(ctx, sel, v)
+}
+
 func (ec *executionContext) marshalNProvinsi2ᚕᚖgithubᚗcomᚋlisvindanuuᚋindonesiaqlᚋinternalᚋdomainᚐProvinsiᚄ(ctx context.Context, sel ast.SelectionSet, v []*domain.Provinsi) graphql.Marshaler {
 	ret := graphql.MarshalSliceConcurrently(ctx, len(v), 0, false, func(ctx context.Context, i int) graphql.Marshaler {
 		fc := graphql.GetFieldContext(ctx)
@@ -12104,6 +14059,32 @@ func (ec *executionContext) marshalNProvinsi2ᚖgithubᚗcomᚋlisvindanuuᚋind
 		return graphql.Null
 	}
 	return ec._Provinsi(ctx, sel, v)
+}
+
+func (ec *executionContext) marshalNStasiunKereta2ᚕᚖgithubᚗcomᚋlisvindanuuᚋindonesiaqlᚋgraphᚋmodelᚐStasiunKeretaᚄ(ctx context.Context, sel ast.SelectionSet, v []*model.StasiunKereta) graphql.Marshaler {
+	ret := graphql.MarshalSliceConcurrently(ctx, len(v), 0, false, func(ctx context.Context, i int) graphql.Marshaler {
+		fc := graphql.GetFieldContext(ctx)
+		fc.Result = &v[i]
+		return ec.marshalNStasiunKereta2ᚖgithubᚗcomᚋlisvindanuuᚋindonesiaqlᚋgraphᚋmodelᚐStasiunKereta(ctx, sel, v[i])
+	})
+
+	for _, e := range ret {
+		if e == graphql.Null {
+			return graphql.Null
+		}
+	}
+
+	return ret
+}
+
+func (ec *executionContext) marshalNStasiunKereta2ᚖgithubᚗcomᚋlisvindanuuᚋindonesiaqlᚋgraphᚋmodelᚐStasiunKereta(ctx context.Context, sel ast.SelectionSet, v *model.StasiunKereta) graphql.Marshaler {
+	if v == nil {
+		if !graphql.HasFieldError(ctx, graphql.GetFieldContext(ctx)) {
+			graphql.AddErrorf(ctx, "the requested element is null which the schema does not allow")
+		}
+		return graphql.Null
+	}
+	return ec._StasiunKereta(ctx, sel, v)
 }
 
 func (ec *executionContext) unmarshalNString2string(ctx context.Context, v any) (string, error) {
